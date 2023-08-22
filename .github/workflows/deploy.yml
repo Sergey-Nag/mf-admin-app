@@ -25,10 +25,9 @@ jobs:
 
       - name: Build
         run: |
-          DOMAIN=${{ vars.DOMAIN }} npm run build
+          npm run build
         env:
           DOMAIN: ${{ secrets.DOMAIN }}
-          TEST: test variable
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

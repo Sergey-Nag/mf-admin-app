@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 const path = require('path');
 
-const domain = process.env.DOMAIN ?? 'localhost:3001';
+const domain = process.env.DOMAIN ?? 'http://localhost:3001';
 const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
         }
     },
     output: {
-        publicPath: `http://${domain}/`,
+        publicPath: `${domain}/`,
     },
     module: {
         rules: [

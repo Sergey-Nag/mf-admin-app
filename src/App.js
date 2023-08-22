@@ -60,6 +60,8 @@ const Dashboard = () => {
 }
 const App = ({ basename = ''}) => (
     <div>
+        <h1>Test view</h1>
+        <hr />
         <BrowserRouter basename={basename}>
             <Routes>
                 <Route path='/' element={<Main />} />

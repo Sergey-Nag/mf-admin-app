@@ -25,10 +25,7 @@ jobs:
 
       - name: Build
         run: |
-          npm run build
-        env:
-          DOMAIN: ${{ vars.DOMAIN }}
-          PORT: ${{ vars.PORT }}
+          DOMAIN=${{ vars.DOMAIN }} npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

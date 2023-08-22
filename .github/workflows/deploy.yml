@@ -6,6 +6,11 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.16.1]
+
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1

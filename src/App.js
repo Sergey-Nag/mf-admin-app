@@ -58,7 +58,7 @@ const Dashboard = () => {
         </>
     )
 }
-const App = ({ basename = process.env.DOMAIN ?? '' }) => (
+const App = ({ basename = ''}) => (
     <div>
         <h1>Test page view</h1>
         <hr />

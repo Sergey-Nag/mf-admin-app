@@ -11,4 +11,4 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: |
-                echo the PR was merged
+                echo the PR was merged successfully

@@ -32,3 +32,4 @@ jobs:
         REMOTE_PORT: ${{ secrets.DEPLOY_PORT }}
         SOURCE: "dist/"
         TARGET: ${{ secrets.DEPLOY_TARGET }}
+

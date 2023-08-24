@@ -1,15 +1,22 @@
 name: Build and Deploy to EC2 AWS host
 
+# on:
+#   push:
+#     branches:
+#       - master
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+      branches:
+        - master
+      types:
+        - closed
 
 permissions:
   contents: write
 
 jobs:
   build-and-deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

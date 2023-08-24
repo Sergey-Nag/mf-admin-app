@@ -1,7 +1,6 @@
 {
     "name": "admin-app",
     "version": "0.0.0",
-    "homepage": "https://sergey-nag.github.io/mf-admin-app/",
     "private": true,
     "devDependencies": {
         "@babel/core": "7.21.4",

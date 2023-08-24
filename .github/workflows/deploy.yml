@@ -20,6 +20,8 @@ jobs:
         node-version: 18.16.1
     - run: npm install
     - run: npm run build
+      env:
+        REMOTE_HOST: ${{ secrets.DEPLOY_HOST }}
 
     - name: ssh deploy on aws ec2
       uses: easingthemes/ssh-deploy@v3

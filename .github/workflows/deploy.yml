@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: 18.16.1
     - run: npm install
-    - run: CI=false npm run build
+    - run: npm run build
 
     - name: ssh deploy on aws ec2
       uses: easingthemes/ssh-deploy@v2.1.4

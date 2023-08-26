@@ -1,25 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
-const path = require('path');
 
 const domain = process.env.REMOTE_HOST ?? 'localhost:3001';
-const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
     entry: './src/index',
-    mode: isDev ? 'development' : 'production',
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'dist'),
-        },
-        port: 3001,
-        historyApiFallback: true,
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-        }
-    },
-    output: {
-        publicPath: `http://${domain}/`,
+    resolve: {
+        extensions: ['.js', '.jsx'],
     },
     module: {
         rules: [
@@ -28,8 +15,20 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 options: {
-                    presets: ['@babel/preset-react'],
+                    presets: ['@babel/preset-env', '@babel/preset-react'],
                 },
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                        }
+                    }
+                ],
             },
         ],
     },

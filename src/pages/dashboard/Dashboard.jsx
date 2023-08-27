@@ -5,7 +5,7 @@ import styles from './Dashboard.css';
 export function Dashboard() {
     return (
         <>
-            
+
             Dashboard page
             <Link to="/">Main</Link>
         </>

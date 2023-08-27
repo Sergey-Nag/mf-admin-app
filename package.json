@@ -29,7 +29,7 @@
         "build": "webpack --config config/webpack.prod.js",
         "serve": "serve dist -p 3001",
         "clean": "rm -rf dist",
-        "lint": "eslint ./src",
+        "lint": "eslint ./src --ext .jsx --ext .js",
         "lint:fix": "npm run lint -- --fix"
     },
     "dependencies": {

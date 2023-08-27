@@ -10,4 +10,4 @@ export function Dashboard() {
             <Link to="/">Main</Link>
         </>
     );
-}
+};

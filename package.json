@@ -40,11 +40,6 @@
             "git add ."
         ]
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npm run lint-staged"
-        }
-    },
     "dependencies": {
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",

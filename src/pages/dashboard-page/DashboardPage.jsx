@@ -7,7 +7,7 @@ export function DashboardPage() {
     console.log(params);
     return (
         <>
-            Dashboard page №{params.id}
+            <h4 style={{ color: 'white' }}>Dashboard page №{params.id}</h4>
             <Grid container gap>
                 <Grid item xs={3}>
                     <Skeleton variant="rectangular" width="100%" height={50} />
@@ -33,7 +33,7 @@ export function DashboardPage() {
                     <Skeleton variant="rectangular" width={500} height={50} />
                 </Grid>
             </Grid>
-            <Link to="/dashboard">Back</Link>
+            <Link to="/dashboard"><h4 style={{ color: 'white' }}>Back</h4></Link>
         </>
     );
 }

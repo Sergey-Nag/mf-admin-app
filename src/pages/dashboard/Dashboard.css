@@ -1,7 +1,11 @@
 .dashboard {
-    color: blue;
+    color: #f507edfc;
 }
 
 .list {
     font-size: 2em;
+}
+.btnMain :active{
+ 
+    background-color: rgb(92, 147, 211);
 }

@@ -6,6 +6,10 @@ import { Dashboard } from './pages/dashboard/Dashboard';
 import { DashboardPage } from './pages/dashboard-page/DashboardPage';
 import styles from './App.css';
 
+// const denerateClassName = createGenerateClassName({
+//     productionPrefix: 'a-app',
+// })
+
 function Main() {
     return (
         <div className={styles.app}>

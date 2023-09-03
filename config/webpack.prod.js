@@ -6,4 +6,22 @@ module.exports = merge(commonConfig, {
     output: {
         publicPath: `http://${process.env.REMOTE_HOST ?? 'localhost:3001'}/`,
     },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                mode: 'local'
+                            },
+                        }
+                    }
+                ],
+            },
+        ]
+    }
 });

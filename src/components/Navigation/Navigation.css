@@ -1,0 +1,11 @@
+.dashboard {
+    color: #f507edfc;
+}
+
+.list {
+    font-size: 2em;
+}
+
+.btn-active button {
+    background-color: rgb(92, 147, 211)!important;
+}

@@ -4,6 +4,8 @@ import {
 } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import { Dashboard } from './pages/dashboard/Dashboard';
 import { DashboardPage } from './pages/dashboard-page/DashboardPage';
 import styles from './App.css';
@@ -30,16 +32,22 @@ function Main() {
     );
 }
 
+const cache = createCache({
+    key: 'admin',
+});
+
 function App({ basename = '' }) {
     return (
-        <BrowserRouter basename={basename}>
-            <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/dashboard" element={<Dashboard />}>
-                    <Route path=":id" element={<DashboardPage />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <CacheProvider value={cache}>
+            <BrowserRouter basename={basename}>
+                <Routes>
+                    <Route path="/" element={<Main />} />
+                    <Route path="/dashboard" element={<Dashboard />}>
+                        <Route path=":id" element={<DashboardPage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </CacheProvider>
     );
 }
 

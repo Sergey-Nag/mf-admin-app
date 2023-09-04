@@ -2,10 +2,10 @@ import React from 'react';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import cx from 'classnames';
-import { makeStyles } from 'tss-react/mui';
+import { tss } from 'tss-react/mui';
 import styles from './Dashboard.css';
 
-const useStyles = makeStyles()((theme) => {
+const useStyles = tss.create(({ theme }) => {
     console.log(theme);
     return {
         container: {

@@ -7,3 +7,11 @@
     margin-left: 1rem;
     font-weight: bold;
 }
+
+.active {
+    background-color: blue;
+}
+
+.font {
+    font-size: 2em;
+}

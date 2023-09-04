@@ -1,9 +1,11 @@
 import { createTheme } from '@mui/material';
+import { deepPurple } from '@mui/material/colors';
 
+// Docs: https://mui.com/material-ui/customization/theming/
 const theme = createTheme({
     palette: {
         background: {
-            paper: '#f2f2f2',
+            default: deepPurple[700],
         },
     },
 });

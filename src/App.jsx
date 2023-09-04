@@ -11,16 +11,19 @@ import styles from './App.css';
 function Main() {
     return (
         <div className={styles.app}>
-            <Box sx={{
-                backgroundColor: 'red',
-            }}
+            <Box
+                sx={{
+                    backgroundColor: 'red',
+                }}
             >
                 <h2>Admin Panel</h2>
                 <Link to="/dashboard">To dashboard</Link>
-                <Button sx={{
-                    background: 'green',
-                }}
-                >BTN
+                <Button
+                    sx={{
+                        background: 'green',
+                    }}
+                >
+                    BTN
                 </Button>
             </Box>
         </div>

@@ -8,8 +8,12 @@ import styles from './Dashboard.css';
 const useStyles = makeStyles()((theme) => {
     console.log(theme);
     return {
+        container: {
+            height: '100vh',
+            backgroundColor: theme.palette.background.default,
+        },
         btn: {
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: theme.palette.primary.light,
         },
         gap: {
             marginTop: theme.spacing(2),
@@ -25,7 +29,7 @@ const useStyles = makeStyles()((theme) => {
 export function Dashboard() {
     const { classes } = useStyles();
     return (
-        <>
+        <div className={classes.container}>
             <span className={styles.dashboard}>
                 Dashboard page
             </span>
@@ -37,7 +41,8 @@ export function Dashboard() {
             </ul>
             <Button
                 sx={({ palette }) => ({
-                    backgroundColor: palette.background.paper,
+                    backgroundColor: palette.secondary.light,
+                    color: palette.secondary.contrastText,
                 })}
                 fullWidth
             >
@@ -48,6 +53,6 @@ export function Dashboard() {
                 Btn classes
             </Button>
             <Link to="/">Main</Link>
-        </>
+        </div>
     );
 }

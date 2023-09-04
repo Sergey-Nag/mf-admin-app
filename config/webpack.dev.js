@@ -2,7 +2,7 @@ const { merge } = require('webpack-merge');
 const commonConfig = require('./webpack.common');
 const path = require('path');
 
-const conf = merge(commonConfig, {
+module.exports = merge(commonConfig, {
     mode: 'development',
     output: {
         publicPath: `http://localhost:3001/`,
@@ -18,6 +18,9 @@ const conf = merge(commonConfig, {
         }
     },
     devtool: 'source-map',
+    optimization: {
+        runtimeChunk: 'single'
+    },
     module: {
         rules: [
             {
@@ -37,9 +40,4 @@ const conf = merge(commonConfig, {
             },
         ]
     }
-    // optimization: {
-    //     runtimeChunk: 'single'
-    // }
 });
-console.log(conf);
-module.exports = conf;

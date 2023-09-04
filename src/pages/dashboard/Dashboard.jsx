@@ -30,7 +30,7 @@ export function Dashboard() {
     const { classes } = useStyles();
     return (
         <div className={classes.container}>
-            <span className={styles.dashboard}>
+            <span className={classes.font}>
                 Dashboard page
             </span>
             <ul className={styles.list}>

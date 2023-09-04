@@ -9,3 +9,10 @@
 .btn-active button {
     background-color: rgb(92, 147, 211)!important;
 }
+.side-nav-height {
+    height: 100%;
+}
+.side-nav-btns {
+    margin: 3px;
+    width: 97%;
+}

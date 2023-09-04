@@ -12,12 +12,12 @@ export function Navigation() {
     };
 
     return (
-        <ButtonGroup style={{ width: '100%', margin: '0px' }} size="large" color="primary" orientation="vertical" variant="contained" aria-label="outlined primary button group">
-            <NavLink className={applyActive} to="/dashboard"><Button style={{ margin: '3px', width: '97%' }}>Dashboard</Button></NavLink>
-            <NavLink className={applyActive} to="/products"><Button style={{ margin: '3px', width: '97%' }}>Products</Button></NavLink>
-            <NavLink className={applyActive} to="/orders"><Button style={{ margin: '3px', width: '97%' }}>Orders</Button></NavLink>
-            <NavLink className={applyActive} to="/pages"><Button style={{ margin: '3px', width: '97%' }}>Pages</Button></NavLink>
-            <NavLink className={applyActive} to="/users"><Button style={{ margin: '3px', width: '97%' }}>Users</Button></NavLink>
+        <ButtonGroup className={styles['side-nav-height']} fullWidth size="large" color="primary" orientation="vertical" variant="contained" aria-label="outlined primary button group">
+            <NavLink className={applyActive} to="/dashboard"><Button className={styles['side-nav-btns']}>Dashboard</Button></NavLink>
+            <NavLink className={applyActive} to="/products"><Button className={styles['side-nav-btns']}>Products</Button></NavLink>
+            <NavLink className={applyActive} to="/orders"><Button className={styles['side-nav-btns']}>Orders</Button></NavLink>
+            <NavLink className={applyActive} to="/pages"><Button className={styles['side-nav-btns']}>Pages</Button></NavLink>
+            <NavLink className={applyActive} to="/users"><Button className={styles['side-nav-btns']}>Users</Button></NavLink>
         </ButtonGroup>
     );
 }

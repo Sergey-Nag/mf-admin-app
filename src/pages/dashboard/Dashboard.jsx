@@ -1,10 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
+import styles from '../styles/common.css';
 
 export function Dashboard() {
     return (
-        <Box display="flex" justifyContent="center" flexDirection="column" alignItems="center" height="inherit">
+        <Box className={styles['all-pages']}>
             <Typography variant="h1" color="primary">Dashboard</Typography>
         </Box>
     );
 }
+
+export default Dashboard;

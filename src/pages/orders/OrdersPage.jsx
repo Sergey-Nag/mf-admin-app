@@ -1,10 +1,11 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import styles from '../../styles/common.css';
+import useCommonStyles from '../../hooks/useCommonStyles/useCommonStyles';
 
 function OrdersPage() {
+    const { classes } = useCommonStyles();
     return (
-        <Box className={styles['all-pages']}>
+        <Box className={classes.page}>
             <Typography variant="h1" color="primary">Orders</Typography>
         </Box>
     );

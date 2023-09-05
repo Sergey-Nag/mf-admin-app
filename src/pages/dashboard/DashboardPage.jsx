@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import styles from '../styles/common.css';
+import styles from '../../styles/common.css';
 
-export function Dashboard() {
+function DashboardPage() {
     return (
         <Box className={styles['all-pages']}>
             <Typography variant="h1" color="primary">Dashboard</Typography>
@@ -10,4 +10,4 @@ export function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default DashboardPage;

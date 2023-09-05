@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import styles from '../styles/common.css';
+import styles from '../../styles/common.css';
 
-function Users() {
+function UsersPage() {
     return (
         <Box className={styles['all-pages']}>
             <Typography variant="h1" color="primary">Users</Typography>
@@ -10,4 +10,4 @@ function Users() {
     );
 }
 
-export default Users;
+export default UsersPage;

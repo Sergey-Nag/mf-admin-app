@@ -1,8 +1,10 @@
 import React from 'react';
-import { Grid, StyledEngineProvider } from '@mui/material';
+import { Grid } from '@mui/material';
 import {
     BrowserRouter, Route, Routes, Navigate,
 } from 'react-router-dom';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 import PagesPage from './pages/pages/PagesPage';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import UsersPage from './pages/users/UsersPage';
@@ -10,9 +12,13 @@ import OrdersPage from './pages/orders/OrdersPage';
 import ProductsPage from './pages/products/ProductsPage';
 import { Navigation } from './components/Navigation/Navigation';
 
+const cache = createCache({
+    key: 'admin',
+});
+
 function App({ basename = '' }) {
     return (
-        <StyledEngineProvider injectFirst>
+        <CacheProvider value={cache}>
             <BrowserRouter basename={basename}>
                 <Grid container height="100vh" alignItems="stretch">
                     <Grid item xs={2}>
@@ -30,7 +36,7 @@ function App({ basename = '' }) {
                     </Grid>
                 </Grid>
             </BrowserRouter>
-        </StyledEngineProvider>
+        </CacheProvider>
     );
 }
 

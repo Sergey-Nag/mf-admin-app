@@ -20,5 +20,24 @@ module.exports = merge(commonConfig, {
     devtool: 'source-map',
     optimization: {
         runtimeChunk: 'single'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                mode: 'local',
+                                localIdentName: "[local]--[hash:base64:5]",
+                            },
+                        }
+                    }
+                ],
+            },
+        ]
     }
 });

@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
+const {dependencies} = require('../package.json');
 
-const domain = process.env.REMOTE_HOST ?? 'localhost:3001';
 
 module.exports = {
     entry: './src/index',
@@ -18,18 +18,6 @@ module.exports = {
                     presets: ['@babel/preset-env', '@babel/preset-react'],
                 },
             },
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                        }
-                    }
-                ],
-            },
         ],
     },
     plugins: [
@@ -41,6 +29,7 @@ module.exports = {
                 './AdminComponent': './src/App'
             },
             shared: {
+                ...dependencies,
                 react: {
                     singleton: true,
                     version: '0',

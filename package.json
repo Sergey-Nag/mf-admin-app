@@ -32,7 +32,8 @@
         "clean": "rm -rf dist",
         "lint": "eslint ./src --ext .jsx --ext .js",
         "lint:fix": "npm run lint -- --fix",
-        "lint-staged": "lint-staged"
+        "lint-staged": "lint-staged",
+        "prepare": "husky install"
     },
     "lint-staged": {
         "*.{js,jsx}": [

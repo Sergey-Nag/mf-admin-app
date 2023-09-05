@@ -1,36 +1,16 @@
 import React from 'react';
+import { Grid } from '@mui/material';
 import {
-    BrowserRouter, Link, Route, Routes,
+    BrowserRouter, Route, Routes, Navigate,
 } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
-import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
-import { Dashboard } from './pages/dashboard/Dashboard';
-import { DashboardPage } from './pages/dashboard-page/DashboardPage';
-import styles from './App.css';
-
-function Main() {
-    return (
-        <div className={styles.app}>
-            <Box
-                sx={{
-                    backgroundColor: 'red',
-                }}
-            >
-                <h2>Admin Panel</h2>
-                <Link to="/dashboard">To dashboard</Link>
-                <Button
-                    sx={{
-                        background: 'green',
-                    }}
-                >
-                    BTN
-                </Button>
-            </Box>
-        </div>
-    );
-}
+import createCache from '@emotion/cache';
+import PagesPage from './pages/pages/PagesPage';
+import DashboardPage from './pages/dashboard/DashboardPage';
+import UsersPage from './pages/users/UsersPage';
+import OrdersPage from './pages/orders/OrdersPage';
+import ProductsPage from './pages/products/ProductsPage';
+import { Navigation } from './components/Navigation/Navigation';
 
 const cache = createCache({
     key: 'admin',
@@ -40,12 +20,21 @@ function App({ basename = '' }) {
     return (
         <CacheProvider value={cache}>
             <BrowserRouter basename={basename}>
-                <Routes>
-                    <Route path="/" element={<Main />} />
-                    <Route path="/dashboard" element={<Dashboard />}>
-                        <Route path=":id" element={<DashboardPage />} />
-                    </Route>
-                </Routes>
+                <Grid container height="100vh" alignItems="stretch">
+                    <Grid item xs={2}>
+                        <Navigation />
+                    </Grid>
+                    <Grid item xs={10} sx={{ height: '100vh', backgroundColor: '#535da8' }}>
+                        <Routes>
+                            <Route path="/" element={<Navigate to="/dashboard" />} />
+                            <Route path="/dashboard" element={<DashboardPage />} />
+                            <Route path="/products" element={<ProductsPage />} />
+                            <Route path="/orders" element={<OrdersPage />} />
+                            <Route path="/pages" element={<PagesPage />} />
+                            <Route path="/users" element={<UsersPage />} />
+                        </Routes>
+                    </Grid>
+                </Grid>
             </BrowserRouter>
         </CacheProvider>
     );

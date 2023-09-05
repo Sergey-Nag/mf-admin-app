@@ -33,7 +33,7 @@
         "lint": "eslint ./src --ext .jsx --ext .js",
         "lint:fix": "npm run lint -- --fix",
         "lint-staged": "lint-staged",
-        "prepare": "npm pkg set scripts.prepare=\"husky install\""
+        "prepare": "husky install"
     },
     "lint-staged": {
         "*.{js,jsx}": [

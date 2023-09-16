@@ -1,4 +1,5 @@
 import { tss } from 'tss-react/mui';
+import theme from '../../theme';
 
 const useCommonStyles = tss.create({
     page: {
@@ -6,9 +7,14 @@ const useCommonStyles = tss.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 'inherit',
-    },
-    pageColumn: {
         flexDirection: 'column',
+        backgroundColor: theme.palette.background.light,
+    },
+    sideBar: {
+        width: '300px',
+        backgroundColor: theme.palette.background.default,
+        height: '100%',
+
     },
 });
 

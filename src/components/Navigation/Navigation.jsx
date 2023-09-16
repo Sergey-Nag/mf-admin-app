@@ -3,13 +3,16 @@ import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { tss } from 'tss-react/mui';
+import { Typography } from '@mui/material';
 
 const useStyles = tss.withNestedSelectors().create(({ theme, classes }) => {
     console.log(theme);
     return {
         btnGroup: {
+            width: '300px',
+            widows: '100%',
             height: '100%',
-            padding: theme.spacing(1),
+            padding: theme.spacing(2),
         },
         btn: {
             marginBottom: theme.spacing(1),
@@ -18,6 +21,15 @@ const useStyles = tss.withNestedSelectors().create(({ theme, classes }) => {
             [`& .${classes.btn}`]: {
                 backgroundColor: theme.palette.primary.light,
             },
+        },
+        adminBtn: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 'inherit',
+            flexDirection: 'column',
+            marginBottom: theme.spacing(2),
+            color: 'white',
         },
     };
 });
@@ -32,7 +44,8 @@ export function Navigation() {
     };
 
     return (
-        <ButtonGroup className={classes.btnGroup} fullWidth size="large" color="primary" orientation="vertical" variant="contained" aria-label="outlined primary button group">
+        <ButtonGroup className={classes.btnGroup} fullWidth size="medium" color="primary" orientation="vertical" variant="contained" aria-label="outlined primary button group">
+            <NavLink className={applyActive} to=""><Typography className={classes.adminBtn}>Admin</Typography></NavLink>
             <NavLink className={applyActive} to="/dashboard"><Button className={classes.btn}>Dashboard</Button></NavLink>
             <NavLink className={applyActive} to="/products"><Button className={classes.btn}>Products</Button></NavLink>
             <NavLink className={applyActive} to="/orders"><Button className={classes.btn}>Orders</Button></NavLink>

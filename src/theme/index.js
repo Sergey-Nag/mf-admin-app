@@ -6,6 +6,7 @@ const theme = createTheme({
     palette: {
         background: {
             default: deepPurple[700],
+            light: deepPurple[200],
         },
     },
 });

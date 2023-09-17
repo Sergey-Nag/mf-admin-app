@@ -8,8 +8,10 @@ const useStyles = tss.withNestedSelectors().create(({ theme, classes }) => {
     console.log(theme);
     return {
         btnGroup: {
+            width: '300px',
+            widows: '100%',
             height: '100%',
-            padding: theme.spacing(1),
+            padding: theme.spacing(2),
         },
         btn: {
             marginBottom: theme.spacing(1),
@@ -32,7 +34,7 @@ export function Navigation() {
     };
 
     return (
-        <ButtonGroup className={classes.btnGroup} fullWidth size="large" color="primary" orientation="vertical" variant="contained" aria-label="outlined primary button group">
+        <ButtonGroup className={classes.btnGroup} fullWidth size="medium" color="primary" orientation="vertical" variant="contained" aria-label="outlined primary button group">
             <NavLink className={applyActive} to="/dashboard"><Button className={classes.btn}>Dashboard</Button></NavLink>
             <NavLink className={applyActive} to="/products"><Button className={classes.btn}>Products</Button></NavLink>
             <NavLink className={applyActive} to="/orders"><Button className={classes.btn}>Orders</Button></NavLink>

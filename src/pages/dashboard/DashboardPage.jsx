@@ -1,14 +1,11 @@
-import { Box, Typography } from '@mui/material';
 import React from 'react';
-import cx from 'classnames';
-import useCommonStyles from '../../hooks/useCommonStyles/useCommonStyles';
+import Page from '../../components/Page/Page';
 
 function DashboardPage() {
-    const { classes } = useCommonStyles();
     return (
-        <Box className={cx(classes.page, classes.pageColumn)}>
-            <Typography variant="h1" color="primary">Dashboard</Typography>
-        </Box>
+        <Page title="Dashboard">
+            <div>SomeText</div>
+        </Page>
     );
 }
 

@@ -6,7 +6,7 @@ import cx from 'classnames';
 const useStyles = tss.create(({ theme }) => ({
     tile: {
         padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
-        background: '#e2e2e2',
+        background: theme.palette.grey[300],
     },
 }
 ));

@@ -9,7 +9,6 @@ const useStyles = tss.withNestedSelectors().create(({ theme, classes }) => {
     return {
         btnGroup: {
             width: '300px',
-            widows: '100%',
             height: '100%',
             padding: theme.spacing(2),
         },

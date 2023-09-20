@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import React from 'react';
 import { tss } from 'tss-react/mui';
 
@@ -28,7 +28,7 @@ function Page({ title, children }) {
             <div className={classes.titleWrap}>
                 <Typography variant="h4" className={classes.title}>{title}</Typography>
             </div>
-            <div>{children}</div>
+            <Grid container spacing={2}>{children}</Grid>
         </div>
     );
 }

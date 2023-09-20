@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import {
     BrowserRouter, Route, Routes, Navigate,
 } from 'react-router-dom';
@@ -40,6 +40,7 @@ function App({ basename = '' }) {
                     <Box className={classes.sideBar}>
                         <Navigation />
                     </Box>
+
                     <Routes>
                         <Route path="/" element={<Navigate to="/dashboard" />} />
                         <Route path="/dashboard" element={<DashboardPage />} />
@@ -48,6 +49,7 @@ function App({ basename = '' }) {
                         <Route path="/pages" element={<PagesPage />} />
                         <Route path="/users" element={<UsersPage />} />
                     </Routes>
+
                 </div>
             </BrowserRouter>
         </CacheProvider>

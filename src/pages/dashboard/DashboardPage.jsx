@@ -5,12 +5,12 @@ import Tile from '../../components/Tile/Tile';
 function DashboardPage() {
     return (
         <Page title="Dashboard">
-            <Tile slots={1}> </Tile>
-            <Tile slots={1}> </Tile>
-            <Tile slots={1}> </Tile>
-            <Tile slots={1}> </Tile>
-            <Tile slots={2}> </Tile>
-            <Tile slots={2}> </Tile>
+            <Tile slots={1} />
+            <Tile slots={1} />
+            <Tile slots={1} />
+            <Tile slots={1} />
+            <Tile slots={2} />
+            <Tile slots={2} />
         </Page>
     );
 }

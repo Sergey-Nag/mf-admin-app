@@ -1,16 +1,17 @@
 import React from 'react';
 import Page from '../../components/Page/Page';
-import Tile from '../../components/Tile/Tile';
+import SmallCard from './components/Card/SmallCard';
+import MediumCard from './components/Card/MediumCard';
 
 function DashboardPage() {
     return (
         <Page title="Dashboard">
-            <Tile slots={1} />
-            <Tile slots={1} />
-            <Tile slots={1} />
-            <Tile slots={1} />
-            <Tile slots={2} />
-            <Tile slots={2} />
+            <SmallCard title="SMALL" link="ascxas" />
+            <SmallCard title="SMALL" />
+            <SmallCard title="SMALL" />
+            <SmallCard title="SMALL" />
+            <MediumCard title="MEDIUM" />
+            <MediumCard title="MEDIUM" />
         </Page>
     );
 }

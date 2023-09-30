@@ -9,6 +9,8 @@ const useStyles = tss.create(({ theme }) => ({
         padding: `${theme.spacing(1)} ${theme.spacing(2)}`,
         background: theme.palette.grey[300],
         height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
     },
     link: {
         display: 'block',

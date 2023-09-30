@@ -8,14 +8,17 @@ module.exports = merge(commonConfig, {
         publicPath: `http://localhost:3001/`,
     },
     devServer: {
+        hot: true,
         static: {
-            directory: path.join(__dirname, 'dist'),
+            directory: path.join(__dirname, 'public'),
         },
+        watchFiles: ['src/**'],
         port: 3001,
         historyApiFallback: true,
         headers: {
             "Access-Control-Allow-Origin": "*",
-        }
+        },
+        open: true,
     },
     devtool: 'source-map',
     optimization: {

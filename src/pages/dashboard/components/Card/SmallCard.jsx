@@ -10,16 +10,18 @@ const useStyles = tss.create(({ theme }) => ({
     titleMargin: {
         marginBottom: theme.spacing(1),
     },
-
-}
-));
+    content: {
+        maxHeight: '100%',
+        overflow: 'auto',
+    },
+}));
 
 function SmallCard({ title, link, children }) {
     const { classes } = useStyles();
     return (
         <Tile className={classes.card} slots={1} link={link}>
             <div className={classes.titleMargin}><Typography>{title}</Typography></div>
-            <div>{children}</div>
+            <div className={classes.content}>{children}</div>
         </Tile>
     );
 }

@@ -1,5 +1,6 @@
 import { onError } from '@apollo/client/link/error';
 import { REST_URL } from '../../constants/urls';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../constants/tokenKeys';
 
 const refreshTokenLink = onError(({
     networkError, operation, forward,
@@ -7,8 +8,8 @@ const refreshTokenLink = onError(({
     if (!operation.getContext().headers.authorization) return;
 
     if (networkError && networkError.statusCode === 401) {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const accessToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem(REFRESH_TOKEN);
+        const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
         if (refreshToken) {
             fetch(`${REST_URL}/refresh-token`, {
@@ -29,10 +30,10 @@ const refreshTokenLink = onError(({
 
                     // Update the access token in local storage
                     if (newAccessToken) {
-                        localStorage.setItem('accessToken', newAccessToken);
+                        localStorage.setItem(ACCESS_TOKEN, newAccessToken);
                     } else if (error) {
-                        localStorage.removeItem('accessToken');
-                        localStorage.removeItem('refreshToken');
+                        localStorage.removeItem(ACCESS_TOKEN);
+                        localStorage.removeItem(REFRESH_TOKEN);
                     }
 
                     // Retry the original GraphQL operation after token refresh

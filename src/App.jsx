@@ -11,11 +11,14 @@ import DashboardPage from './pages/dashboard/DashboardPage';
 import UsersPage from './pages/users/UsersPage';
 import OrdersPage from './pages/orders/OrdersPage';
 import ProductsPage from './pages/products/ProductsPage';
+import { Navigation } from './components/Navigation/Navigation';
+import NotFoundPage from './pages/not-found/NotFoundPage';
 import client from './api/client';
 import LoginPage from './pages/login/LoginPage';
 import AuthProtected from './components/AuthProtected/AuthProtected';
 import AuthProvider from './providers/AuthProvider';
 import appTheme from './theme';
+
 
 const cache = createCache({
     key: 'admin',

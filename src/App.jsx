@@ -12,6 +12,7 @@ import UsersPage from './pages/users/UsersPage';
 import OrdersPage from './pages/orders/OrdersPage';
 import ProductsPage from './pages/products/ProductsPage';
 import { Navigation } from './components/Navigation/Navigation';
+import NotFoundPage from './pages/not-found/NotFoundPage';
 
 const cache = createCache({
     key: 'admin',
@@ -47,6 +48,8 @@ function App({ basename = '' }) {
                         <Route path="/orders" element={<OrdersPage />} />
                         <Route path="/pages" element={<PagesPage />} />
                         <Route path="/users" element={<UsersPage />} />
+                        <Route path="/not-found-page" element={<NotFoundPage />} />
+                        <Route path="*" element={<Navigate to="/not-found-page" />} />
                     </Routes>
                 </div>
             </BrowserRouter>

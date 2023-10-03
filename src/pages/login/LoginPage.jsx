@@ -81,7 +81,6 @@ function LoginPage() {
                     </Button>
                 </form>
             </Paper>
-
         </Box>
     );
 }

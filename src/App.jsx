@@ -1,22 +1,22 @@
+import { ApolloProvider } from '@apollo/client';
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import React from 'react';
 import {
-    BrowserRouter, Route, Routes, Navigate,
+    BrowserRouter,
+    Navigate,
+    Route, Routes,
 } from 'react-router-dom';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-import { ApolloProvider } from '@apollo/client';
-import PagesPage from './pages/pages/PagesPage';
-import DashboardPage from './pages/dashboard/DashboardPage';
-import UsersPage from './pages/users/UsersPage';
-import OrdersPage from './pages/orders/OrdersPage';
-import ProductsPage from './pages/products/ProductsPage';
-import { Navigation } from './components/Navigation/Navigation';
-import NotFoundPage from './pages/not-found/NotFoundPage';
 import client from './api/client';
-import LoginPage from './pages/login/LoginPage';
 import AuthProtected from './components/AuthProtected/AuthProtected';
+import DashboardPage from './pages/dashboard/DashboardPage';
+import LoginPage from './pages/login/LoginPage';
+import NotFoundPage from './pages/not-found/NotFoundPage';
+import OrdersPage from './pages/orders/OrdersPage';
+import PagesPage from './pages/pages/PagesPage';
+import ProductsPage from './pages/products/ProductsPage';
+import UsersPage from './pages/users/UsersPage';
 import AuthProvider from './providers/AuthProvider';
-
 
 const cache = createCache({
     key: 'admin',

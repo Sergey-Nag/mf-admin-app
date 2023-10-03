@@ -1,7 +1,7 @@
+const { DefinePlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 const {dependencies} = require('../package.json');
-
 
 module.exports = {
     entry: './src/index',
@@ -17,7 +17,7 @@ module.exports = {
                 options: {
                     presets: ['@babel/preset-env', '@babel/preset-react'],
                 },
-            },
+            }
         ],
     },
     plugins: [
@@ -45,5 +45,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './public/index.html',
         }),
+        new DefinePlugin({
+            'process.env.REACT_APP_SERVER_URL': JSON.stringify(process.env.REACT_APP_SERVER_URL),
+        })
     ],
 };

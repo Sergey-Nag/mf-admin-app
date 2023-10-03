@@ -10,9 +10,7 @@ const useStyles = tss.create(({ theme }) => ({
     titleMargin: {
         marginBottom: theme.spacing(1),
     },
-
-}
-));
+}));
 
 function MediumCard({ title, link, children }) {
     const { classes } = useStyles();

@@ -10,7 +10,7 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 import PagesPage from './pages/pages/PagesPage';
 import DashboardPage from './pages/dashboard/DashboardPage';
-import UsersPage from './pages/users/UsersPage';
+import CustomersPage from './pages/customers/CustomersPage';
 import OrdersPage from './pages/orders/OrdersPage';
 import ProductsPage from './pages/products/ProductsPage';
 import client from './api/client';
@@ -38,7 +38,7 @@ function App({ basename = '', theme = appTheme }) {
                                     <Route path="/products" element={<ProductsPage />} />
                                     <Route path="/orders" element={<OrdersPage />} />
                                     <Route path="/pages" element={<PagesPage />} />
-                                    <Route path="/users" element={<UsersPage />} />
+                                    <Route path="/customers" element={<CustomersPage />} />
                                     <Route path="/not-found" element={<NotFoundPage />} />
                                     <Route path="*" element={<Navigate to="/not-found" />} />
                                 </Route>

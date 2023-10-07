@@ -48,7 +48,7 @@ export function Navigation() {
                     <NavLink className={applyActive} to="/products"><Button className={classes.btn}>Products</Button></NavLink>
                     <NavLink className={applyActive} to="/orders"><Button className={classes.btn}>Orders</Button></NavLink>
                     <NavLink className={applyActive} to="/pages"><Button className={classes.btn}>Pages</Button></NavLink>
-                    <NavLink className={applyActive} to="/users"><Button className={classes.btn}>Users</Button></NavLink>
+                    <NavLink className={applyActive} to="/customers"><Button className={classes.btn}>Customers</Button></NavLink>
                 </div>
                 <div>
                     <Button onClick={logout}>Log out</Button>

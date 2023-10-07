@@ -7,7 +7,7 @@ import SmallCard from './components/Card/SmallCard';
 const useStyles = tss.create(() => ({
     dashboardCards: {
         display: 'flex',
-        height: '200px',
+        height: '100%',
     },
     cardsContent: {
         margin: 'auto',

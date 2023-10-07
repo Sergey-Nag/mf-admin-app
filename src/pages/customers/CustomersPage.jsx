@@ -1,10 +1,10 @@
 import React from 'react';
 import Page from '../../components/Page/Page';
 
-function UsersPage() {
+function CustomersPage() {
     return (
-        <Page title="Users" />
+        <Page title="Customers" />
     );
 }
 
-export default UsersPage;
+export default CustomersPage;

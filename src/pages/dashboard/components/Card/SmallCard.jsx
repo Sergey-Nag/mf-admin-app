@@ -13,6 +13,7 @@ const useStyles = tss.create(({ theme }) => ({
     content: {
         maxHeight: '100%',
         overflow: 'auto',
+        flexGrow: '1',
     },
 }));
 

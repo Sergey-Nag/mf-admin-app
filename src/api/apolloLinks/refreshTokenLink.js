@@ -17,6 +17,8 @@ const refreshTokenLink = onError(({
                     if (response.status === 401) {
                         localStorage.removeItem(ACCESS_TOKEN);
                         localStorage.removeItem(REFRESH_TOKEN);
+
+                        window.location.reload();
                         return;
                     }
 

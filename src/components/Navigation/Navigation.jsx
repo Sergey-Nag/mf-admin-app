@@ -12,6 +12,7 @@ const useStyles = tss.withNestedSelectors().create(({ theme, classes }) => {
             width: '300px',
             height: '100%',
             padding: theme.spacing(2),
+            paddingTop: 0,
         },
         btn: {
             marginBottom: theme.spacing(1),

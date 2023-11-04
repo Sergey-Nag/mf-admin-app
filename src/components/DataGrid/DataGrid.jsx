@@ -15,7 +15,7 @@ const useStyles = tss.create(() => ({
         textAlign: 'center',
     },
 }));
-function DataGridCOPY() {
+function DataGrid() {
     const { classes } = useStyles();
     return (
         <div>
@@ -56,4 +56,4 @@ function DataGridCOPY() {
     );
 }
 
-export default DataGridCOPY;
+export default DataGrid;

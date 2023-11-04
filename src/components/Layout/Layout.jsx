@@ -13,6 +13,8 @@ const useStyles = tss.create(({ theme }) => ({
         display: 'flex',
         height: '100vh',
         backgroundColor: theme.palette.background.light,
+        fontFamily: theme.typography.fontFamily,
+        fontSize: theme.typography.fontSize,
     },
 }));
 

@@ -61,6 +61,7 @@ function LoginPage() {
                         label="Email"
                         variant="outlined"
                         type="email"
+                        name="email"
                         fullWidth
                         required
                         value={email}
@@ -71,6 +72,7 @@ function LoginPage() {
                         label="Password"
                         variant="outlined"
                         type="password"
+                        name="password"
                         fullWidth
                         required
                         value={password}

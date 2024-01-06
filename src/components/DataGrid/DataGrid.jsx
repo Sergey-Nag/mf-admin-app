@@ -33,7 +33,7 @@ function DataGrid({
         handleAllSelectedChanged,
         handleSelectionChanged,
     } = useDataGrid({ rowData, colDefs, onSelectionChanged });
-    console.log(rows);
+
     return (
         <div>
             <table className={classes.dataGrid}>

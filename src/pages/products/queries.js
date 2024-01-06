@@ -27,7 +27,10 @@ export const PRODUCTS = gql`
                     firstname
                     lastname
                 }
-            }
+            },
+            end
+            itemsLeft
+            totalItems
         }
     }
 `;

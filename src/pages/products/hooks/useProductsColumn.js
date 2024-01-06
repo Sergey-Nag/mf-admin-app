@@ -16,6 +16,7 @@ export function useProductsColumn() {
             },
         },
         {
+            field: 'name',
             headerName: 'Name',
             cellRenderer: ProductLinkCellRenderer,
         },

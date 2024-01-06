@@ -6,9 +6,12 @@ import { useProductsData } from './hooks/useProductsData';
 import { useProductsColumn } from './hooks/useProductsColumn';
 
 function ProductsPage() {
-    const { products, loading } = useProductsData();
     const { colDefs } = useProductsColumn();
-    console.log(products, loading);
+    const {
+        products, totalItems, loading, pagination, page,
+        handlePaginationChange,
+        handleItemsPerPageChange,
+    } = useProductsData();
 
     return (
         <Page title="Products">
@@ -18,13 +21,13 @@ function ProductsPage() {
                     rowData={products}
                     onSelectionChanged={(rows) => console.log(rows)}
                     pagination={{
-                        page: 0,
-                        rowsPerPage: 5,
-                        count: products?.length || 0,
+                        page,
+                        rowsPerPage: pagination.amount,
+                        count: totalItems,
                         rowsPerPageOptions: [5, 10, 20],
                     }}
-                    onRowsPerPageChange={console.log}
-                    onPaginationChanged={console.log}
+                    onRowsPerPageChange={handleItemsPerPageChange}
+                    onPaginationChanged={handlePaginationChange}
                     loading={loading}
                 />
             </Grid>

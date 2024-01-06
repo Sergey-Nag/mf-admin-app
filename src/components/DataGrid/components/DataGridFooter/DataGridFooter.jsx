@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { tss } from 'tss-react/mui';
 import DataGridPagination from '../DataGridPagination/DataGridPagination';
 
@@ -16,11 +16,17 @@ const useStyles = tss.create(({ theme }) => ({
 }
 ));
 
-function DataGridFooter() {
+function DataGridFooter({ pagination, onPaginationChanged, onRowsPerPageChange }) {
     const { classes } = useStyles();
     return (
-        <div className={classes.gridFooter}><DataGridPagination /></div>
+        <div className={classes.gridFooter}>
+            <DataGridPagination
+                {...pagination}
+                onPaginationChanged={onPaginationChanged}
+                onRowsPerPageChange={onRowsPerPageChange}
+            />
+        </div>
     );
 }
 
-export default memo(DataGridFooter);
+export default DataGridFooter;

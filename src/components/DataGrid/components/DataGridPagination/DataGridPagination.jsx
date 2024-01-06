@@ -1,14 +1,18 @@
 import * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
 
-function DataGridPagination() {
+function DataGridPagination({
+    count = 10, page = 0, rowsPerPage, rowsPerPageOptions, onPaginationChanged, onRowsPerPageChange,
+}) {
     return (
         <TablePagination
             component="div"
-            count={100}
-            page={1}
-            rowsPerPage={10}
-            onPageChange={() => { }}
+            count={count}
+            page={page}
+            rowsPerPageOptions={rowsPerPageOptions}
+            rowsPerPage={rowsPerPage}
+            onPageChange={(_, nextPage) => onPaginationChanged && onPaginationChanged(nextPage)}
+            onRowsPerPageChange={(e) => onRowsPerPageChange && onRowsPerPageChange(e.target.value)}
         />
     );
 }

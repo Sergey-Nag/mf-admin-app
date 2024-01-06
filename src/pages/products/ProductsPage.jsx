@@ -40,6 +40,62 @@ function ProductsPage() {
             photo: 'https://picsum.photos/200',
             available: 3,
         },
+        {
+            id: 4,
+            name: 'Product 3',
+            categories: 'Category 3',
+            price: 30,
+            photo: 'https://picsum.photos/200',
+            available: 3,
+        },
+        {
+            id: 5,
+            name: 'Product 5',
+            categories: 'Category 3',
+            price: 30,
+            photo: 'https://picsum.photos/200',
+            available: 3,
+        },
+        {
+            id: 6,
+            name: 'Product 6',
+            categories: 'Category 3',
+            price: 30,
+            photo: 'https://picsum.photos/200',
+            available: 3,
+        },
+        {
+            id: 7,
+            name: 'Product 7',
+            categories: 'Category 3',
+            price: 30,
+            photo: 'https://picsum.photos/200',
+            available: 3,
+        },
+        {
+            id: 8,
+            name: 'Product 8',
+            categories: 'Category 3',
+            price: 30,
+            photo: 'https://picsum.photos/200',
+            available: 3,
+        },
+        {
+            id: 9,
+            name: 'Product 9',
+            categories: 'Category 3',
+            price: 30,
+            photo: 'https://picsum.photos/200',
+            available: 3,
+        },
+        {
+            id: 10,
+            name: 'Product 10',
+            categories: 'Category 3',
+            price: 30,
+            photo: 'https://picsum.photos/200',
+            available: 3,
+        },
     ];
 
     return (
@@ -49,6 +105,14 @@ function ProductsPage() {
                     colDefs={colDefs}
                     rowData={rowData}
                     onSelectionChanged={(rows) => console.log(rows)}
+                    pagination={{
+                        page: 0,
+                        rowsPerPage: 5,
+                        count: rowData.length,
+                        rowsPerPageOptions: [5, 10, 20],
+                    }}
+                    onRowsPerPageChange={console.log}
+                    onPaginationChanged={console.log}
                 />
             </Grid>
         </Page>

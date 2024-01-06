@@ -1,55 +1,39 @@
 import React from 'react';
-import { Checkbox } from '@mui/material';
 import { tss } from 'tss-react/mui';
-import { Link } from 'react-router-dom';
-import DataGridHeader from './components/DataGridHeader/DataGridHeader';
-import DataGridHeaderCell from './components/DataGridHeaderCell/DataGridHeaderCell';
-import DataGridCell from './components/DataGridCell/DataGridCell';
-import DataGridRow from './components/DataGridRow/DataGridRow';
+import DataGridBody from './components/DataGridBody/DataGridBody';
 import DataGridFooter from './components/DataGridFooter/DataGridFooter';
+import DataGridHeader from './components/DataGridHeader/DataGridHeader';
+import useDataGrid from './hooks/useDataGrid';
 
 const useStyles = tss.create(() => ({
     dataGrid: {
         width: '100%',
         borderCollapse: 'collapse',
-        textAlign: 'center',
     },
 }));
-function DataGrid() {
+
+function DataGrid({ rowData, colDefs, onSelectionChanged }) {
     const { classes } = useStyles();
+    const {
+        rows,
+        selected,
+        handleAllSelectedChanged,
+        handleSelectionChanged,
+    } = useDataGrid({ rowData, colDefs, onSelectionChanged });
+
     return (
         <div>
             <table className={classes.dataGrid}>
-                <DataGridHeader>
-                    <DataGridHeaderCell width={20}><Checkbox /></DataGridHeaderCell>
-                    <DataGridHeaderCell>Photo</DataGridHeaderCell>
-                    <DataGridHeaderCell>Name</DataGridHeaderCell>
-                    <DataGridHeaderCell>Categories</DataGridHeaderCell>
-                    <DataGridHeaderCell>Price</DataGridHeaderCell>
-                    <DataGridHeaderCell>Avallable</DataGridHeaderCell>
-                    <DataGridHeaderCell>Updated</DataGridHeaderCell>
-                    <DataGridHeaderCell>1</DataGridHeaderCell>
-                </DataGridHeader>
-                <DataGridRow>
-                    <DataGridCell width={20}><Checkbox /></DataGridCell>
-                    <DataGridCell><img src="" alt="Product" /></DataGridCell>
-                    <DataGridCell><Link to="/">Product name</Link></DataGridCell>
-                    <DataGridCell>Clothes</DataGridCell>
-                    <DataGridCell>10$</DataGridCell>
-                    <DataGridCell>100</DataGridCell>
-                    <DataGridCell>10.10.2020</DataGridCell>
-                    <DataGridCell>1</DataGridCell>
-                </DataGridRow>
-                <DataGridRow>
-                    <DataGridCell width={20}><Checkbox /></DataGridCell>
-                    <DataGridCell><img src="" alt="Product" /></DataGridCell>
-                    <DataGridCell><Link to="/">Product name</Link></DataGridCell>
-                    <DataGridCell>Clothes</DataGridCell>
-                    <DataGridCell>10$</DataGridCell>
-                    <DataGridCell>100</DataGridCell>
-                    <DataGridCell>10.10.2020</DataGridCell>
-                    <DataGridCell>1</DataGridCell>
-                </DataGridRow>
+                <DataGridHeader
+                    colDefs={colDefs}
+                    allSelected={selected.length === rows.length}
+                    onSelectionChanged={handleAllSelectedChanged}
+                />
+                <DataGridBody
+                    rows={rows}
+                    selected={selected}
+                    onSelectionChanged={handleSelectionChanged}
+                />
             </table>
             <DataGridFooter />
         </div>

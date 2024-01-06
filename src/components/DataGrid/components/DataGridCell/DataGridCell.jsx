@@ -9,10 +9,14 @@ const useStyles = tss.create(({ theme, width }) => ({
     },
 }
 ));
-function DataGridCell({ children, width }) {
-    const { classes } = useStyles({ width });
+function DataGridCell({
+    value, width, cellRenderer, className, onChange,
+}) {
+    const { classes, cx } = useStyles({ width });
+    const content = typeof cellRenderer === 'function' ? cellRenderer({ value, onChange }) : value;
     return (
-        <td className={classes.cell}>{children}
+        <td className={cx(classes.cell, className)}>
+            {content}
         </td>
     );
 }

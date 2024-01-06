@@ -8,6 +8,7 @@ function DataGridPagination() {
             count={100}
             page={1}
             rowsPerPage={10}
+            onPageChange={() => { }}
         />
     );
 }

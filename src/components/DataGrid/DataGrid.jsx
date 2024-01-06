@@ -4,16 +4,27 @@ import DataGridBody from './components/DataGridBody/DataGridBody';
 import DataGridFooter from './components/DataGridFooter/DataGridFooter';
 import DataGridHeader from './components/DataGridHeader/DataGridHeader';
 import useDataGrid from './hooks/useDataGrid';
+import Loader from '../Loader/Loader';
 
-const useStyles = tss.create(() => ({
+const useStyles = tss.create(({ theme }) => ({
     dataGrid: {
         width: '100%',
         borderCollapse: 'collapse',
     },
+    loaderCell: {
+        padding: theme.spacing(10),
+    },
 }));
 
 function DataGrid({
-    rowData, colDefs, onSelectionChanged, pagination, onPaginationChanged, onRowsPerPageChange,
+    rowData,
+    colDefs,
+    onSelectionChanged,
+    pagination,
+    onPaginationChanged,
+    onRowsPerPageChange,
+    loading,
+    cellHeight,
 }) {
     const { classes } = useStyles();
     const {
@@ -28,17 +39,30 @@ function DataGrid({
             <table className={classes.dataGrid}>
                 <DataGridHeader
                     colDefs={colDefs}
-                    allSelected={selected.length === rows.length}
+                    allSelected={rows.length !== 0 && selected.length === rows.length}
                     onSelectionChanged={handleAllSelectedChanged}
                 />
-                <DataGridBody
-                    rows={rows}
-                    selected={selected}
-                    onSelectionChanged={handleSelectionChanged}
-                />
+                {loading && (
+                    <tbody>
+                        <tr>
+                            <td colSpan={colDefs.length + 1} className={classes.loaderCell}>
+                                <Loader />
+                            </td>
+                        </tr>
+                    </tbody>
+                )}
+                {!loading && (
+                    <DataGridBody
+                        rows={rows}
+                        selected={selected}
+                        onSelectionChanged={handleSelectionChanged}
+                        cellHeight={cellHeight}
+                    />
+                )}
             </table>
             <DataGridFooter
                 pagination={pagination}
+                selectedRows={selected.length}
                 onPaginationChanged={onPaginationChanged}
                 onRowsPerPageChange={onRowsPerPageChange}
             />

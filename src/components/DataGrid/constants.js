@@ -1,0 +1,1 @@
+export const DATAGRID_CHECKBOX_COLUMN_WIDTH = 50;

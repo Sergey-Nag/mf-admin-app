@@ -2,6 +2,7 @@ import React from 'react';
 import { tss } from 'tss-react/mui';
 import DataGridHeaderCell from '../DataGridHeaderCell/DataGridHeaderCell';
 import CheckboxCellRenderer from '../../cell-renderers/CheckboxCellRenderer/CheckboxCellRenderer';
+import { DATAGRID_CHECKBOX_COLUMN_WIDTH } from '../../constants';
 
 const useStyles = tss.create(({ theme }) => ({
     gridHeader: {
@@ -17,7 +18,7 @@ function DataGridHeader({ colDefs, allSelected, onSelectionChanged }) {
         <thead>
             <tr className={classes.gridHeader}>
                 <DataGridHeaderCell
-                    width={50}
+                    width={DATAGRID_CHECKBOX_COLUMN_WIDTH}
                     value={allSelected}
                     onChange={(_, checked) => {
                         onSelectionChanged && onSelectionChanged(checked);
@@ -30,6 +31,7 @@ function DataGridHeader({ colDefs, allSelected, onSelectionChanged }) {
                         value={colDef.headerName}
                         width={colDef.width}
                         cellRenderer={colDef.headerCellRenderer}
+                        style={colDef.headerStyle}
                     />
                 ))}
             </tr>

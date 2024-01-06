@@ -12,7 +12,9 @@ const useStyles = tss.create(() => ({
     },
 }));
 
-function DataGrid({ rowData, colDefs, onSelectionChanged }) {
+function DataGrid({
+    rowData, colDefs, onSelectionChanged, pagination, onPaginationChanged, onRowsPerPageChange,
+}) {
     const { classes } = useStyles();
     const {
         rows,
@@ -35,7 +37,11 @@ function DataGrid({ rowData, colDefs, onSelectionChanged }) {
                     onSelectionChanged={handleSelectionChanged}
                 />
             </table>
-            <DataGridFooter />
+            <DataGridFooter
+                pagination={pagination}
+                onPaginationChanged={onPaginationChanged}
+                onRowsPerPageChange={onRowsPerPageChange}
+            />
         </div>
     );
 }

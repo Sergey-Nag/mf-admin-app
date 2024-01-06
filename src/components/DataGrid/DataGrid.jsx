@@ -24,6 +24,7 @@ function DataGrid({
     onPaginationChanged,
     onRowsPerPageChange,
     loading,
+    cellHeight,
 }) {
     const { classes } = useStyles();
     const {
@@ -32,7 +33,7 @@ function DataGrid({
         handleAllSelectedChanged,
         handleSelectionChanged,
     } = useDataGrid({ rowData, colDefs, onSelectionChanged });
-
+    console.log(rows);
     return (
         <div>
             <table className={classes.dataGrid}>
@@ -55,11 +56,13 @@ function DataGrid({
                         rows={rows}
                         selected={selected}
                         onSelectionChanged={handleSelectionChanged}
+                        cellHeight={cellHeight}
                     />
                 )}
             </table>
             <DataGridFooter
                 pagination={pagination}
+                selectedRows={selected.length}
                 onPaginationChanged={onPaginationChanged}
                 onRowsPerPageChange={onRowsPerPageChange}
             />

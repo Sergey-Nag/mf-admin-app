@@ -2,22 +2,22 @@ import React from 'react';
 import { tss } from 'tss-react/mui';
 import DataGridCell from '../DataGridCell/DataGridCell';
 import CheckboxCellRenderer from '../../cell-renderers/CheckboxCellRenderer/CheckboxCellRenderer';
+import { DATAGRID_CHECKBOX_COLUMN_WIDTH } from '../../constants';
 
 const useStyles = tss.create(() => ({
     row: {
         justifyContent: 'space-between',
-        height: 90,
     },
 }));
 
 function DataGridRow({
-    cells, id, className, selected, onSelectionChanged,
+    cells, id, className, selected, onSelectionChanged, cellHeight, rowData,
 }) {
     const { classes, cx } = useStyles();
     return (
         <tr className={cx(classes.row, className)}>
             <DataGridCell
-                width={50}
+                width={DATAGRID_CHECKBOX_COLUMN_WIDTH}
                 value={selected}
                 onChange={(_, checked) => onSelectionChanged && onSelectionChanged(checked, id)}
                 cellRenderer={CheckboxCellRenderer}
@@ -28,6 +28,11 @@ function DataGridRow({
                     value={cell.value}
                     width={cell.width}
                     cellRenderer={cell.cellRenderer}
+                    height={cellHeight}
+                    style={cell.style}
+                    rowData={rowData}
+                    valueGetter={cell.valueGetter}
+                    title={cell.title}
                 />
             ))}
         </tr>

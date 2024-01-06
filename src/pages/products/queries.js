@@ -11,6 +11,7 @@ export const PRODUCTS = gql`
                 id
                 coverPhotoUrl
                 name
+                alias
                 categories {
                     id
                     name
@@ -20,8 +21,8 @@ export const PRODUCTS = gql`
                 stock {
                     amount
                 }
-                lastModifiedISO
-                modifiedBy {
+                createdISO
+                createdBy {
                     id
                     firstname
                     lastname

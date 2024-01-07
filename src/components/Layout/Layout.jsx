@@ -15,7 +15,7 @@ const useStyles = tss.create(({ theme }) => ({
     layout: {
         display: 'flex',
         height: '100vh',
-        backgroundColor: theme.palette.background.light,
+        backgroundColor: theme.palette.grey[100],
         fontFamily: theme.typography.fontFamily,
         fontSize: theme.typography.fontSize,
     },

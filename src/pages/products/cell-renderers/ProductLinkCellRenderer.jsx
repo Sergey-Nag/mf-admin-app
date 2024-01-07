@@ -1,10 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function ProductLinkCellRenderer({ rowData }) {
     return (
-        <NavLink to={`/products/${rowData.alias}`}>
+        <Link to={`/products/${rowData.id}`}>
             {rowData.name}
-        </NavLink>
+        </Link>
     );
 }

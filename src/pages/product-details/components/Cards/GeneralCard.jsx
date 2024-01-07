@@ -38,7 +38,6 @@ export default function GeneralCard({
                         <FormLabel label="Categories:" htmlFor="categories" />
                     </Grid>
                     <Grid item xs={9}>
-                        {/* <TextField id="categories" value="" size="small" fullWidth /> */}
                         <Autocomplete
                             multiple
                             id="categories"

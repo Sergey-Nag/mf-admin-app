@@ -60,13 +60,11 @@ export default function PhotosCard({ skeleton, photosUrl, coverPhotoUrl }) {
                                 // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                 src={img}
                                 alt={img}
-                                // loading="lazy"
                             />
                         </ImageListItem>
                     ))}
                 </ImageList>
             )}
-
         </PageCard>
     );
 }

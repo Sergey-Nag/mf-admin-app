@@ -19,6 +19,7 @@ import LoginPage from './pages/login/LoginPage';
 import NotFoundPage from './pages/not-found/NotFoundPage';
 import AuthProvider from './providers/AuthProvider';
 import appTheme from './theme';
+import ProductDetailsPage from './pages/product-details/ProductDetailsPage';
 
 const cache = createCache({
     key: 'admin',
@@ -36,6 +37,7 @@ function App({ basename = '', theme = appTheme }) {
                                     <Route path="/" element={<Navigate to="/dashboard" />} />
                                     <Route path="/dashboard" element={<DashboardPage />} />
                                     <Route path="/products" element={<ProductsPage />} />
+                                    <Route path="/products/:id" element={<ProductDetailsPage />} />
                                     <Route path="/orders" element={<OrdersPage />} />
                                     <Route path="/pages" element={<PagesPage />} />
                                     <Route path="/customers" element={<CustomersPage />} />

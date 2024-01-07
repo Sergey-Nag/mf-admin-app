@@ -1,5 +1,7 @@
-import { Grid, Typography } from '@mui/material';
+import { ChevronLeft } from '@mui/icons-material';
+import { Grid, IconButton, Typography } from '@mui/material';
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { tss } from 'tss-react/mui';
 
 const useStyles = tss.create(({ theme }) => ({
@@ -17,16 +19,23 @@ const useStyles = tss.create(({ theme }) => ({
     },
     title: {
         fontWeight: 600,
+        color: theme.palette.text.secondary,
     },
-
 }));
 
-function Page({ title, children }) {
+function Page({ title, children, showBackButton = false }) {
     const { classes } = useStyles();
     return (
         <div className={classes.page}>
             <div className={classes.titleWrap}>
-                <Typography variant="h4" className={classes.title}>{title}</Typography>
+                <Typography variant="h4" className={classes.title}>
+                    {showBackButton && (
+                        <IconButton component={Link} to={-1}>
+                            <ChevronLeft sx={{ width: '2rem', height: '2rem' }} />
+                        </IconButton>
+                    )}
+                    {title}
+                </Typography>
             </div>
             <Grid container spacing={2}>{children}</Grid>
         </div>

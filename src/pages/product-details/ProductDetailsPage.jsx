@@ -11,7 +11,7 @@ import PhotosCard from './components/Cards/PhotosCard';
 import PriceCard from './components/Cards/PriceCard';
 import { useProductData } from './hooks/useProductData';
 
-export default function ProductPage() {
+export default function ProductDetailsPage() {
     const params = useParams();
     const { product, loading } = useProductData(params.id);
     console.log(product);

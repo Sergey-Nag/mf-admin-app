@@ -27,19 +27,31 @@ const useStyles = tss.create(({ theme }) => ({
 export default function AdminInfo() {
     const { classes } = useStyles();
     const { user } = useAuth();
+    const firstName = user ? user.firstname : '';
+    const lastName = user ? user.lastname : '';
+    const getInitials = () => {
+        if (firstName && lastName) {
+            const firstInitial = firstName.charAt(0).toUpperCase();
+            const lastInitial = lastName.charAt(0).toUpperCase();
+            return `${firstInitial}${lastInitial}`;
+        } if (firstName) {
+            return firstName.charAt(0).toUpperCase();
+        }
+        return '';
+    };
 
     return (
         <Box className={classes.adminWrap}>
             <Avatar className={classes.avatar}>
                 <Typography variant="body2">
-                    A
+                    {getInitials()}
                 </Typography>
             </Avatar>
             {user && (
                 <Typography className={classes.name}>
-                    {user.firstname}
-                    {' '}
-                    {user.lastname}
+                    {firstName}
+                    {lastName && ' '}
+                    {lastName}
                 </Typography>
             )}
         </Box>

@@ -48,7 +48,8 @@ export default function AdminInfo() {
             {user && (
                 <Typography className={classes.name}>
                     {firstName}
-                    {lastName && ' '}
+                    {' '}
+                    {lastName}
                 </Typography>
             )}
         </Box>

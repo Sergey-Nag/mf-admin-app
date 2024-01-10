@@ -34,10 +34,8 @@ export default function AdminInfo() {
             const firstInitial = firstName.charAt(0).toUpperCase();
             const lastInitial = lastName.charAt(0).toUpperCase();
             return `${firstInitial}${lastInitial}`;
-        } if (firstName) {
-            return firstName.charAt(0).toUpperCase();
         }
-        return '';
+        return firstName.charAt(0).toUpperCase();
     };
 
     return (
@@ -51,7 +49,6 @@ export default function AdminInfo() {
                 <Typography className={classes.name}>
                     {firstName}
                     {lastName && ' '}
-                    {lastName}
                 </Typography>
             )}
         </Box>

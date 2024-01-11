@@ -1,14 +1,16 @@
-import { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { PRODUCTS } from '../queries';
+import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { SORTING_ORDER } from '../../../constants/api';
+import { PRODUCTS } from '../queries';
 
 export function useProductsData({ filter } = {}) {
-    const [page, setPage] = useState(0);
-    const [pagination, setPagination] = useState({
-        start: 0,
-        amount: 5,
-    });
+    const [searchParams, setSearchParams] = useSearchParams({ page: 0, amount: 5 });
+
+    const pagination = useMemo(() => ({
+        start: +searchParams.get('page') * +searchParams.get('amount') || 0,
+        amount: +searchParams.get('amount') || 5,
+    }), [searchParams]);
 
     const {
         data,
@@ -24,32 +26,12 @@ export function useProductsData({ filter } = {}) {
         },
     );
 
-    const pagesMap = useMemo(() => {
-        if (data?.products?.totalItems === undefined) {
-            return [];
-        }
-        const pagesCount = Math.ceil(data.products.totalItems / pagination.amount);
-        return new Array(pagesCount).fill(0).map((_, i) => i * pagination.amount);
-    }, [data?.products?.totalItems, pagination.amount]);
-
     const handlePaginationChange = (nextPage) => {
-        setPagination(
-            {
-                start: pagesMap[nextPage],
-                amount: pagination.amount,
-            },
-        );
-        setPage(nextPage);
+        setSearchParams({ page: nextPage, amount: pagination.amount });
     };
 
     const handleItemsPerPageChange = (amount) => {
-        setPagination(
-            {
-                start: 0,
-                amount,
-            },
-        );
-        setPage(0);
+        setSearchParams({ page: 0, amount });
     };
 
     return {
@@ -57,7 +39,7 @@ export function useProductsData({ filter } = {}) {
         totalItems: data?.products?.totalItems,
         loading,
         pagination,
-        page,
+        page: +searchParams.get('page') || 0,
         handlePaginationChange,
         handleItemsPerPageChange,
     };

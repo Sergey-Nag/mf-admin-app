@@ -21,10 +21,8 @@ const useStyles = tss.withNestedSelectors().create(({ theme, classes, width }) =
 function DataGridHeaderCell({
     value, width, cellRenderer, onChange, style,
 }) {
-    // const { headerName, colDef } = cell ?? {};
     const { classes } = useStyles({ width });
     const content = typeof cellRenderer === 'function' ? cellRenderer({ value, onChange }) : value;
-    // const CellRenderer = colDef?.headerCellRenderer;
 
     return (
         <th className={classes.cell}>

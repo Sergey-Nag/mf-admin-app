@@ -1,9 +1,9 @@
-import React from 'react';
 import { Grid } from '@mui/material';
-import Page from '../../components/Page/Page';
+import React from 'react';
 import DataGrid from '../../components/DataGrid/DataGrid';
-import { useProductsData } from './hooks/useProductsData';
+import Page from '../../components/Page/Page';
 import { useProductsColumn } from './hooks/useProductsColumn';
+import { useProductsData } from './hooks/useProductsData';
 
 function ProductsPage() {
     const { colDefs } = useProductsColumn();

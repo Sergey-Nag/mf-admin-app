@@ -16,10 +16,10 @@ export default function ChangesCard({
                     <Grid item xs={3} alignSelf="center">
                         <FormLabel label="Created:" align="left" />
                     </Grid>
-                    <Grid item xs={5} alignSelf="center" textAlign="center">
+                    <Grid item xs={6} alignSelf="center" textAlign="center">
                         {createdAt && dateFormat(createdAt, 'DD.MM.YY HH:mm')}
                     </Grid>
-                    <Grid item xs={4} alignSelf="center" display="flex" alignItems="center" justifyContent="end">
+                    <Grid item xs={3} alignSelf="center" display="flex" alignItems="center" justifyContent="end">
                         <Box marginRight={1}>
                             <Typography variant="body2">
                                 {createdBy?.firstname}
@@ -47,10 +47,10 @@ export default function ChangesCard({
                     <Grid item xs={3} alignSelf="center" display="flex" alignItems="center" justifyContent="end">
                         <Box marginRight={1}>
                             <Typography variant="body2">
-                                {createdBy?.firstname}
+                                {updatedBy?.firstname}
                             </Typography>
                             <Typography variant="body2">
-                                {createdBy?.lastname}
+                                {updatedBy?.lastname}
                             </Typography>
                         </Box>
                         <Avatar>

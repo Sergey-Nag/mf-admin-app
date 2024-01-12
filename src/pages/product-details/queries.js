@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const PRODUCT = gql`
+export const GET_PRODUCT = gql`
     query Product($id: ID!) {
         product(find: {
             id: $id
@@ -18,7 +18,6 @@ export const PRODUCT = gql`
             categories {
                 id
                 name
-                alias
             }
             stock {
                 amount
@@ -33,8 +32,12 @@ export const PRODUCT = gql`
                 options
             }
             tags
-            coverPhotoUrl
-            photosUrl
+            coverPhoto {
+                url
+            }
+            photos {
+                url
+            }
             createdISO
             lastModifiedISO
             createdBy {
@@ -48,6 +51,25 @@ export const PRODUCT = gql`
                 lastname
             }
             sold
+        }
+    }
+`;
+
+export const EDIT_PRODUCT = gql`
+    mutation EditProduct($id: ID!, $product: EditProductInput!) {
+        editProduct(id: $id, input: $product) {
+            id
+        }
+    }
+`;
+
+export const CATEGORIES = gql`
+    query Categories {
+        categories {
+            items {
+                id
+                name
+            }
         }
     }
 `;

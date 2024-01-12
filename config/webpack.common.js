@@ -2,6 +2,7 @@ const { DefinePlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 const {dependencies} = require('../package.json');
+require('dotenv').config();
 
 module.exports = {
     entry: './src/index',
@@ -47,6 +48,7 @@ module.exports = {
         }),
         new DefinePlugin({
             'process.env.REACT_APP_SERVER_URL': JSON.stringify(process.env.REACT_APP_SERVER_URL),
+            'process.env.REACT_APP_IMAGE_HOST_KEY': JSON.stringify(process.env.REACT_APP_IMAGE_HOST_KEY),
         })
     ],
 };

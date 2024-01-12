@@ -9,7 +9,10 @@ export const PRODUCTS = gql`
         ) {
             items {
                 id
-                coverPhotoUrl
+                coverPhoto {
+                    url
+                    thumbUrl
+                }
                 name
                 alias
                 categories {

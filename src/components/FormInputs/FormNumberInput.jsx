@@ -6,6 +6,7 @@ const useStyles = tss.create(({ theme }) => {
         input: {
             border: `1px solid ${theme.palette.divider}`,
             padding: theme.spacing(1),
+            paddingRight: 0,
             borderRadius: theme.shape.borderRadius,
             color: 'currentColor',
             width: '100%',

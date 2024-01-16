@@ -1,13 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import { IconButton, ImageList, ImageListItem } from '@mui/material';
-import React, { useEffect, useMemo, useState } from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { ImageList, ImageListItem } from '@mui/material';
+import React from 'react';
 import { tss } from 'tss-react/mui';
 import PageCard from '../../../../../components/PageCard/PageCard';
-import { IMAGE_HOST_KEY } from '../../../../../api/rest/imageApis';
-import Photo from './components/Photo';
 import AddPhoto from './components/AddPhoto';
+import Photo from './components/Photo';
 
 const useStyles = tss.create(({ theme }) => ({
     cover: {

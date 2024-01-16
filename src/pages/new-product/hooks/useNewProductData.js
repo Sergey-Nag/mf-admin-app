@@ -4,7 +4,6 @@ import { newProductValidationSchema } from '../validationSchema';
 import useProductPhotos from '../../../hooks/useProductPhotos';
 
 export function useNewProductData(createProduct) {
-    // const [images, setImages] = useState({ cover: null, photos: [] });
     const {
         images, changeImages, removePhoto, uploadImages,
     } = useProductPhotos();

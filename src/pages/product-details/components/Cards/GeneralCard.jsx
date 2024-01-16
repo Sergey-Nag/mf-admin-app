@@ -1,11 +1,33 @@
+import { useLazyQuery } from '@apollo/client';
+import {
+    Grid, TextField,
+} from '@mui/material';
 import React from 'react';
-import { Autocomplete, Grid, TextField } from '@mui/material';
-import PageCard from '../../../../components/PageCard/PageCard';
 import FormLabel from '../../../../components/FormInputs/FormLabel';
+import PageCard from '../../../../components/PageCard/PageCard';
+import { CATEGORIES } from '../../queries';
+import FormAutocompleteTextField from '../../../../components/FormInputs/FormAutocompleteTextField';
+import FormAutocompleteSelect from '../../../../components/FormInputs/FormAutocompleteSelect';
 
 export default function GeneralCard({
-    id, name, alias, categories, tags, description = '', skeleton = true,
+    id, name = '', alias = '', categories = [], tags = [], description, skeleton = true, onChange, setFieldValue,
+    handleBlur, errors, touched,
 }) {
+    const [
+        getCategories,
+        {
+            data: {
+                categories: categoriesOptions,
+            } = {},
+            loading,
+        },
+    ] = useLazyQuery(CATEGORIES);
+
+    const aliasPlaceholder = name.toLowerCase()
+        .split(/\W/)
+        .filter(Boolean)
+        .join('-');
+
     return (
         <PageCard title="General" skeleton={skeleton}>
             <form>
@@ -22,7 +44,16 @@ export default function GeneralCard({
                         <FormLabel label="Full name:" htmlFor="name" />
                     </Grid>
                     <Grid item xs={9}>
-                        <TextField id="name" value={name} size="small" fullWidth />
+                        <TextField
+                            id="name"
+                            value={name}
+                            size="small"
+                            fullWidth
+                            onChange={onChange}
+                            onBlur={handleBlur}
+                            error={touched.name && !!errors.name}
+                            helperText={touched.name && errors.name}
+                        />
                     </Grid>
                 </Grid>
                 <Grid container spacing={2} marginBottom={1}>
@@ -30,7 +61,17 @@ export default function GeneralCard({
                         <FormLabel label="Alias:" htmlFor="alias" />
                     </Grid>
                     <Grid item xs={9}>
-                        <TextField id="alias" value={alias} size="small" fullWidth />
+                        <TextField
+                            id="alias"
+                            value={alias}
+                            size="small"
+                            fullWidth
+                            onChange={onChange}
+                            onBlur={handleBlur}
+                            placeholder={aliasPlaceholder}
+                            error={touched.alias && !!errors.alias}
+                            helperText={touched.alias && errors.alias}
+                        />
                     </Grid>
                 </Grid>
                 <Grid container spacing={2} marginBottom={1}>
@@ -38,20 +79,21 @@ export default function GeneralCard({
                         <FormLabel label="Categories:" htmlFor="categories" />
                     </Grid>
                     <Grid item xs={9}>
-                        <Autocomplete
-                            multiple
+                        <FormAutocompleteSelect
                             id="categories"
-                            options={categories ?? []}
-                            getOptionLabel={(option) => option.name}
-                            defaultValue={categories}
-                            filterSelectedOptions
-                            size="small"
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    placeholder="Clother, Shoes, ..."
-                                />
-                            )}
+                            loading={loading}
+                            value={categories}
+                            options={categoriesOptions?.items ?? []}
+                            getOptionLabel={(cat) => cat.name}
+                            isOptionEqualToValue={(option, value) => option.id === value.id}
+                            onOpen={() => getCategories()}
+                            onChange={(_, value) => {
+                                setFieldValue('categories', value);
+                            }}
+                            onBlur={handleBlur}
+                            inputParams={{
+                                placeholder: 'Clother, Shoes, ...',
+                            }}
                         />
                     </Grid>
                 </Grid>
@@ -60,20 +102,16 @@ export default function GeneralCard({
                         <FormLabel label="Tags:" htmlFor="tags" />
                     </Grid>
                     <Grid item xs={9}>
-                        <Autocomplete
-                            multiple
+                        <FormAutocompleteTextField
                             id="tags"
-                            options={tags ?? []}
-                            // getOptionLabel={(option) => option}
-                            defaultValue={tags}
-                            filterSelectedOptions
-                            size="small"
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    placeholder="Phone, Laptop, etc."
-                                />
-                            )}
+                            value={tags}
+                            onChange={(_, value) => {
+                                setFieldValue('tags', value);
+                            }}
+                            onBlur={handleBlur}
+                            inputParams={{
+                                placeholder: 'phone, laptop, ...',
+                            }}
                         />
                     </Grid>
                 </Grid>
@@ -86,7 +124,9 @@ export default function GeneralCard({
                             size="small"
                             fullWidth
                             multiline
-                            rows={4}
+                            rows={5}
+                            onChange={onChange}
+                            onBlur={handleBlur}
                         />
                     </Grid>
                 </Grid>

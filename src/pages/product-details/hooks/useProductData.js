@@ -1,7 +1,9 @@
 import { useMutation, useQuery } from '@apollo/client';
-import { GET_PRODUCT, EDIT_PRODUCT } from '../queries';
+import { useNavigate } from 'react-router-dom';
+import { DELETE_PRODUCT, EDIT_PRODUCT, GET_PRODUCT } from '../queries';
 
 export function useProductData(id) {
+    const navigate = useNavigate();
     const {
         loading, error: fetchError, data, refetch,
     } = useQuery(GET_PRODUCT, {
@@ -24,6 +26,15 @@ export function useProductData(id) {
         onCompleted: () => refetch(),
     });
 
+    const [deleteProduct] = useMutation(DELETE_PRODUCT, {
+        variables: {
+            id,
+        },
+        onCompleted: () => {
+            navigate('/products', { replace: true });
+        },
+    });
+
     return {
         product: data?.product,
         loading,
@@ -31,5 +42,6 @@ export function useProductData(id) {
         fetchError,
         updateError,
         updateProduct,
+        deleteProduct,
     };
 }

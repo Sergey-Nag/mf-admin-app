@@ -1,5 +1,7 @@
-import { Grid, Skeleton } from '@mui/material';
-import React from 'react';
+import {
+    Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Skeleton,
+} from '@mui/material';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Page from '../../components/Page/Page';
 import AmountCard from '../../components/ProductCards/AmountCard';
@@ -14,9 +16,11 @@ import { useEditProductData } from './hooks/useEditProductData';
 import { useProductData } from './hooks/useProductData';
 
 export default function ProductDetailsPage() {
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const params = useParams();
     const {
         product, updateProduct, loading, updating,
+        deleteProduct,
     } = useProductData(params.id);
 
     const {
@@ -34,9 +38,15 @@ export default function ProductDetailsPage() {
                 <ProductControls
                     publishValue={product ? product.isPublished : false}
                     onPublishChange={
-                        (e) => updateProduct({
-                            isPublished: e.target.value,
-                        })
+                        ({ target }) => {
+                            if (target.value === 'delete') {
+                                setShowDeleteDialog(true);
+                            } else {
+                                updateProduct({
+                                    isPublished: target.value,
+                                });
+                            }
+                        }
                     }
                     isSaveDisabled={!isValid || !dirty || updating || imagesLoading}
                     onSave={handleSubmit}
@@ -123,6 +133,20 @@ export default function ProductDetailsPage() {
                     removePhoto={removePhoto}
                 />
             </Grid>
+            <Dialog open={showDeleteDialog}>
+                <DialogTitle>
+                    Delete product?
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure you want to delete this product?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button type="button" onClick={() => setShowDeleteDialog(false)}>Cancel</Button>
+                    <Button type="button" onClick={() => deleteProduct()}>Delete</Button>
+                </DialogActions>
+            </Dialog>
         </Page>
     );
 }

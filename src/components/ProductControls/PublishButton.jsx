@@ -1,6 +1,7 @@
 import { MenuItem, Select } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import Delete from '@mui/icons-material/Delete';
 import React from 'react';
 import { tss } from 'tss-react/mui';
 
@@ -24,10 +25,13 @@ const useStyles = tss.create(({ theme }) => ({
     icon: {
         width: 20,
     },
+    delete: {
+        color: theme.palette.error.main,
+    },
 }));
 
 export default function PublishButton({ value, onChange }) {
-    const { classes } = useStyles();
+    const { classes, cx } = useStyles();
     return (
         <Select className={classes.select} size="small" value={value} onChange={onChange}>
             <MenuItem className={classes.item} value selected>
@@ -39,6 +43,11 @@ export default function PublishButton({ value, onChange }) {
                 <VisibilityOffIcon className={classes.icon} />
                 {' '}
                 Unpublished
+            </MenuItem>
+            <MenuItem className={cx(classes.item, classes.delete)} value="delete">
+                <Delete className={classes.icon} />
+                {' '}
+                Delete
             </MenuItem>
         </Select>
     );

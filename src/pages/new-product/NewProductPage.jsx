@@ -1,53 +1,44 @@
-import { Grid, Skeleton } from '@mui/material';
+import { Grid } from '@mui/material';
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import Page from '../../components/Page/Page';
-import AmountCard from '../../components/ProductCards/AmountCard';
-import ChangesCard from '../../components/ProductCards/ChangesCard';
-import CharacteristicsCard from '../../components/ProductCards/CharacteristicsCard';
 import GeneralCard from '../../components/ProductCards/GeneralCard';
-import OptionsCard from '../../components/ProductCards/OptionsCard';
-import PhotosCard from '../../components/ProductCards/PhotosCard/PhotosCard';
+import { useNewProductData } from './hooks/useNewProductData';
+import AmountCard from '../../components/ProductCards/AmountCard';
 import PriceCard from '../../components/ProductCards/PriceCard';
+import OptionsCard from '../../components/ProductCards/OptionsCard';
+import CharacteristicsCard from '../../components/ProductCards/CharacteristicsCard';
+import PhotosCard from '../../components/ProductCards/PhotosCard/PhotosCard';
 import ProductControls from '../../components/ProductControls/ProductControls';
-import { useEditProductData } from './hooks/useEditProductData';
-import { useProductData } from './hooks/useProductData';
+import { useCreateProduct } from './hooks/useCreateProduct';
 
-export default function ProductDetailsPage() {
-    const params = useParams();
+export default function NewProductPage() {
+    const { createProduct, loading } = useCreateProduct();
     const {
-        product, updateProduct, loading, updating,
-    } = useProductData(params.id);
-
-    const {
-        productValues, dirty, ready, handleChange,
-        setFieldValue, handleBlur, handleSubmit,
-        errors, touched, isValid, changeImages,
-        imagesLoading, removePhoto,
-    } = useEditProductData(product, updateProduct);
+        productValues, errors, touched,
+        handleChange, setFieldValue, handleBlur,
+        changeImages, isValid, dirty,
+        handleSubmit, removePhoto,
+        imagesLoading,
+    } = useNewProductData(createProduct);
 
     return (
         <Page
-            title={product ? product.name : <Skeleton variant="text" width={300} sx={{ display: 'inline-block' }} />}
             showBackButton
+            title="New Product"
             rightControls={(
                 <ProductControls
-                    publishValue={product ? product.isPublished : false}
-                    onPublishChange={
-                        (e) => updateProduct({
-                            isPublished: e.target.value,
-                        })
-                    }
-                    isSaveDisabled={!isValid || !dirty || updating || imagesLoading}
+                    isSaveDisabled={!isValid || !dirty || loading}
+                    isSaveBusy={imagesLoading || loading}
                     onSave={handleSubmit}
-                    isSaveBusy={updating || imagesLoading}
+                    publishValue={productValues?.isPublished}
+                    onPublishChange={(e) => {
+                        setFieldValue('isPublished', e.target.value);
+                    }}
                 />
             )}
         >
             <Grid item xs={12} lg={6}>
                 <GeneralCard
-                    skeleton={loading || !ready}
-                    id={product?.id}
                     name={productValues?.name}
                     alias={productValues?.alias}
                     categories={productValues?.categories}
@@ -64,7 +55,7 @@ export default function ProductDetailsPage() {
                 <Grid container spacing={2}>
                     <Grid item xs={6} lg={12} xl={6} order={{ xs: 0, lg: 1, xl: 0 }}>
                         <AmountCard
-                            skeleton={!ready}
+                            shipping={null}
                             amount={productValues?.stock?.amount}
                             lowStockAlert={productValues?.stock?.lowStockAlert}
                             setFieldValue={setFieldValue}
@@ -74,19 +65,18 @@ export default function ProductDetailsPage() {
                     </Grid>
                     <Grid item xs={6} lg={12} xl={6} order={{ xs: 1, lg: 0, xl: 1 }}>
                         <PriceCard
-                            skeleton={!ready}
                             price={productValues?.price}
-                            priceHistory={product?.priceHistory}
                             setFieldValue={setFieldValue}
                             onBlur={handleBlur}
                             error={errors?.price}
+                            touched={touched.price}
+                            height={50}
                         />
                     </Grid>
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <OptionsCard
-                    skeleton={!ready}
                     options={productValues?.options}
                     setFieldValue={setFieldValue}
                     onBlur={handleBlur}
@@ -96,7 +86,6 @@ export default function ProductDetailsPage() {
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <CharacteristicsCard
-                    skeleton={!ready}
                     characteristics={productValues?.characteristics}
                     setFieldValue={setFieldValue}
                     onBlur={handleBlur}
@@ -105,17 +94,7 @@ export default function ProductDetailsPage() {
                 />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                <ChangesCard
-                    skeleton={!ready}
-                    createdBy={product?.createdBy}
-                    updatedBy={product?.modifiedBy}
-                    createdAt={product?.createdISO}
-                    updatedAt={product?.lastModifiedISO}
-                />
-            </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <PhotosCard
-                    skeleton={!ready}
                     coverPhoto={productValues?.coverPhoto}
                     photos={productValues?.photos}
                     setFieldValue={setFieldValue}

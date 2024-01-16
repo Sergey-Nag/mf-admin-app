@@ -1,13 +1,15 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import { newProductValidationSchema } from '../validationSchema';
 import useProductPhotos from '../../../hooks/useProductPhotos';
-import { productValidationSchema } from '../validationSchema';
 
-export function useEditProductData(product, updateProduct) {
+export function useNewProductData(createProduct) {
+    // const [images, setImages] = useState({ cover: null, photos: [] });
     const {
         images, changeImages, removePhoto, uploadImages,
     } = useProductPhotos();
     const [imagesLoading, setImagesLoading] = useState(false);
+
     const {
         values: productValues,
         dirty,
@@ -17,22 +19,25 @@ export function useEditProductData(product, updateProduct) {
         setFieldValue,
         handleSubmit,
         isValid,
-        ...rest
+        errors,
     } = useFormik({
-        validationSchema: productValidationSchema,
         initialValues: {
-            name: product?.name ?? '',
-            alias: product?.alias ?? '',
-            description: product?.description ?? '',
-            price: product?.price.toFixed(2),
-            categories: product?.categories ?? [],
-            tags: product?.tags ?? [],
-            stock: product?.stock ?? { amount: 0, lowStockAlert: 0 },
-            characteristics: product?.characteristics ?? [],
-            options: product?.options ?? [],
-            coverPhoto: product?.coverPhoto ?? null,
-            photos: product?.photos ?? [],
+            name: '',
+            description: '',
+            price: '0.00',
+            categories: [],
+            options: [],
+            characteristics: [],
+            alias: '',
+            coverPhoto: null,
+            photos: [],
+            stock: {
+                amount: 0,
+                lowStockAlert: 0,
+            },
+            isPublished: false,
         },
+        validationSchema: newProductValidationSchema,
         onSubmit: async (values) => {
             try {
                 setImagesLoading(true);
@@ -54,34 +59,24 @@ export function useEditProductData(product, updateProduct) {
                 setImagesLoading(false);
             }
 
-            const {
-                categories, price, alias, ...restValues
-            } = values;
-
-            updateProduct({
-                price: +price !== product.price ? +price : undefined,
-                categoriesId: categories.map((x) => x.id),
-                alias: alias !== product.alias ? alias : undefined,
-                ...restValues,
-            });
+            createProduct(values);
             changeImages({ cover: null, photos: null });
         },
-        enableReinitialize: true,
     });
 
     return {
         productValues,
         dirty,
-        ready: !!productValues,
-        errors: rest.errors,
         touched,
-        isValid,
         handleChange,
-        setFieldValue,
         handleBlur,
+        setFieldValue,
         handleSubmit,
+        isValid,
+        errors,
+        images,
         changeImages,
-        imagesLoading,
         removePhoto,
+        imagesLoading,
     };
 }

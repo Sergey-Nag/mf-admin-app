@@ -1,5 +1,7 @@
-import { Grid } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import { Button, Grid } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import DataGrid from '../../components/DataGrid/DataGrid';
 import Page from '../../components/Page/Page';
 import { useProductsColumn } from './hooks/useProductsColumn';
@@ -14,7 +16,20 @@ function ProductsPage() {
     } = useProductsData();
 
     return (
-        <Page title="Products">
+        <Page
+            title="Products"
+            rightControls={(
+                <Button
+                    variant="contained"
+                    startIcon={<Add />}
+                    to="new"
+                    LinkComponent={Link}
+                    disableElevation
+                >
+                    Add
+                </Button>
+            )}
+        >
             <Grid item xs={12}>
                 <DataGrid
                     colDefs={colDefs}

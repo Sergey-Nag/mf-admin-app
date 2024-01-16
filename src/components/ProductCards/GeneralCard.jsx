@@ -3,14 +3,14 @@ import {
     Grid, TextField,
 } from '@mui/material';
 import React from 'react';
-import FormLabel from '../../../../components/FormInputs/FormLabel';
-import PageCard from '../../../../components/PageCard/PageCard';
-import { CATEGORIES } from '../../queries';
-import FormAutocompleteTextField from '../../../../components/FormInputs/FormAutocompleteTextField';
-import FormAutocompleteSelect from '../../../../components/FormInputs/FormAutocompleteSelect';
+import FormLabel from '../FormInputs/FormLabel';
+import PageCard from '../PageCard/PageCard';
+import { CATEGORIES } from '../../pages/product-details/queries';
+import FormAutocompleteTextField from '../FormInputs/FormAutocompleteTextField';
+import FormAutocompleteSelect from '../FormInputs/FormAutocompleteSelect';
 
 export default function GeneralCard({
-    id, name = '', alias = '', categories = [], tags = [], description, skeleton = true, onChange, setFieldValue,
+    id, name = '', alias = '', categories = [], tags = [], description, skeleton, onChange, setFieldValue,
     handleBlur, errors, touched,
 }) {
     const [
@@ -31,14 +31,16 @@ export default function GeneralCard({
     return (
         <PageCard title="General" skeleton={skeleton}>
             <form>
-                <Grid container spacing={2} marginBottom={1}>
-                    <Grid item xs={3} alignSelf="center">
-                        <FormLabel label="Id:" htmlFor="id" />
+                {id && (
+                    <Grid container spacing={2} marginBottom={1}>
+                        <Grid item xs={3} alignSelf="center">
+                            <FormLabel label="Id:" htmlFor="id" />
+                        </Grid>
+                        <Grid item xs={9}>
+                            <TextField id="id" value={id} size="small" fullWidth disabled />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={9}>
-                        <TextField id="id" value={id} size="small" fullWidth disabled />
-                    </Grid>
-                </Grid>
+                )}
                 <Grid container spacing={2} marginBottom={1}>
                     <Grid item xs={3} alignSelf="center">
                         <FormLabel label="Full name:" htmlFor="name" />

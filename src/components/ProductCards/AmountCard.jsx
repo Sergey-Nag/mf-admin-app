@@ -1,7 +1,7 @@
 import React from 'react';
 import { Divider, Grid, Typography } from '@mui/material';
-import PageCard from '../../../../components/PageCard/PageCard';
-import FormNumberInput from '../../../../components/FormInputs/FormNumberInput';
+import PageCard from '../PageCard/PageCard';
+import FormNumberInput from '../FormInputs/FormNumberInput';
 
 export default function AmountCard({
     skeleton,
@@ -35,18 +35,20 @@ export default function AmountCard({
                     </Typography>
                 </Grid>
             </Grid>
-            <Grid container spacing={2} marginBottom={1}>
-                <Grid item xs={9} alignSelf="center">
-                    <Typography>
-                        Shipping:
-                    </Typography>
+            {shipping !== null && (
+                <Grid container spacing={2} marginBottom={1}>
+                    <Grid item xs={9} alignSelf="center">
+                        <Typography>
+                            Shipping:
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={3} alignSelf="center">
+                        <Typography>
+                            {shipping}
+                        </Typography>
+                    </Grid>
                 </Grid>
-                <Grid item xs={3} alignSelf="center">
-                    <Typography>
-                        {shipping}
-                    </Typography>
-                </Grid>
-            </Grid>
+            )}
             <Divider sx={{ marginBottom: 1 }} />
             <Grid container spacing={2} marginBottom={1}>
                 <Grid item xs={9} alignSelf="center">

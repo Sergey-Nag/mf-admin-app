@@ -2,8 +2,8 @@ import React from 'react';
 import {
     Grid, InputAdornment, TextField, Typography, Box,
 } from '@mui/material';
-import PageCard from '../../../../components/PageCard/PageCard';
-import { dateFormat } from '../../../../utils/dateFormat';
+import PageCard from '../PageCard/PageCard';
+import { dateFormat } from '../../utils/dateFormat';
 
 export default function PriceCard({
     skeleton,
@@ -12,11 +12,14 @@ export default function PriceCard({
     error,
     setFieldValue,
     onBlur,
+    touched,
+    height,
 }) {
     const history = priceHistory && [...priceHistory]
         .sort((a, b) => new Date(b.createdISO) - new Date(a.createdISO));
+
     return (
-        <PageCard title="Price" skeleton={skeleton}>
+        <PageCard title="Price" skeleton={skeleton} height={height}>
             <Grid container spacing={2} marginBottom={1}>
                 <Grid item xs={12}>
                     <TextField
@@ -43,22 +46,27 @@ export default function PriceCard({
                             setFieldValue('price', Number(e.target.value).toFixed(2));
                             onBlur(e);
                         }}
-                        error={!!error}
-                        helperText={error}
+                        error={touched && !!error}
+                        helperText={touched && error}
                     />
-                    <Typography variant="subtitle2">
-                        history:
-                    </Typography>
-                    {history?.map((item) => (
-                        <Box key={`${item.price}${item.createdISO}`} display="flex" justifyContent="space-between">
-                            <span>
-                                ${Number(item.price).toFixed(2)}
-                            </span>
-                            <span>
-                                {dateFormat(item.createdISO, 'DD.MM.YY HH:mm')}
-                            </span>
-                        </Box>
-                    ))}
+                    {history && (
+                        <>
+                            <Typography variant="subtitle2">
+                                history:
+                            </Typography>
+                            {history.map((item) => (
+                                <Box key={`${item.price}${item.createdISO}`} display="flex" justifyContent="space-between">
+                                    <span>
+                                        ${Number(item.price).toFixed(2)}
+                                    </span>
+                                    <span>
+                                        {dateFormat(item.createdISO, 'DD.MM.YY HH:mm')}
+                                    </span>
+                                </Box>
+                            ))}
+                        </>
+                    )}
+
                 </Grid>
             </Grid>
         </PageCard>

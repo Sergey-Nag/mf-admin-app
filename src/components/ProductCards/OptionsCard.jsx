@@ -4,8 +4,8 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Add } from '@mui/icons-material';
-import PageCard from '../../../../components/PageCard/PageCard';
-import FormAutocompleteTextField from '../../../../components/FormInputs/FormAutocompleteTextField';
+import PageCard from '../PageCard/PageCard';
+import FormAutocompleteTextField from '../FormInputs/FormAutocompleteTextField';
 
 export default function OptionsCard({
     skeleton, options, setFieldValue, onBlur, errors, touched,
@@ -27,6 +27,7 @@ export default function OptionsCard({
     };
 
     const allowToAdd = options === null || (options && options.at(-1)?.name !== '' && options.at(-1)?.options.length !== 0);
+
     return (
         <PageCard title="Options" skeleton={skeleton} height={100}>
             {options && options.map((option, i) => (

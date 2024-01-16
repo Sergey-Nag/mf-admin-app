@@ -2,9 +2,9 @@ import {
     Avatar, Box, Grid, Typography,
 } from '@mui/material';
 import React from 'react';
-import FormLabel from '../../../../components/FormInputs/FormLabel';
-import PageCard from '../../../../components/PageCard/PageCard';
-import { dateFormat } from '../../../../utils/dateFormat';
+import FormLabel from '../FormInputs/FormLabel';
+import PageCard from '../PageCard/PageCard';
+import { dateFormat } from '../../utils/dateFormat';
 
 export default function ChangesCard({
     skeleton, createdBy, createdAt, updatedBy, updatedAt,

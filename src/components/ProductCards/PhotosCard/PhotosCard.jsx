@@ -1,13 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import { IconButton, ImageList, ImageListItem } from '@mui/material';
-import React, { useEffect, useMemo, useState } from 'react';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { ImageList, ImageListItem } from '@mui/material';
+import React from 'react';
 import { tss } from 'tss-react/mui';
-import PageCard from '../../../../../components/PageCard/PageCard';
-import { IMAGE_HOST_KEY } from '../../../../../api/rest/imageApis';
-import Photo from './components/Photo';
+import PageCard from '../../PageCard/PageCard';
 import AddPhoto from './components/AddPhoto';
+import Photo from './components/Photo';
 
 const useStyles = tss.create(({ theme }) => ({
     cover: {
@@ -51,7 +48,7 @@ const useStyles = tss.create(({ theme }) => ({
 }));
 
 export default function PhotosCard({
-    skeleton, photos, coverPhoto, imagesToUpload, onImageChange, setFieldValue,
+    skeleton, photos, coverPhoto, removePhoto, onImageChange, setFieldValue,
 }) {
     const { classes, cx } = useStyles();
 
@@ -68,12 +65,9 @@ export default function PhotosCard({
         const deletedPhoto = changedPhotos.splice(deletedPhotoIndex, 1)[0];
 
         setFieldValue('photos', changedPhotos);
-        onImageChange({
-            photos: imagesToUpload.photos.filter(
-                (ph) => ph.name !== deletedPhoto.alt,
-            ),
-        });
+        removePhoto(deletedPhoto.alt);
     };
+
     const setNewPhotos = (files) => {
         if (!files || files.length === 0) return;
 
@@ -83,7 +77,7 @@ export default function PhotosCard({
             alt: file.name,
         }));
         setFieldValue('photos', [...photos, ...newPhotos]);
-        onImageChange({ photos: [...imagesToUpload.photos, ...files] });
+        onImageChange({ photos: files });
     };
 
     const setNewCoverImage = ([file] = []) => {

@@ -4,7 +4,7 @@ import {
     Button, Grid, IconButton, TextField,
 } from '@mui/material';
 import React from 'react';
-import PageCard from '../../../../components/PageCard/PageCard';
+import PageCard from '../PageCard/PageCard';
 
 export default function CharacteristicsCard({
     skeleton, characteristics, setFieldValue, onBlur, errors, touched,

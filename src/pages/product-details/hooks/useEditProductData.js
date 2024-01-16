@@ -1,10 +1,11 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
-import { getEditProductInput, getUploadedImages } from '../utils';
+import { getUploadedImages } from '../utils';
 import { productValidationSchema } from '../validationSchema';
 
 export function useEditProductData(product, updateProduct) {
     const [images, setImages] = useState({ cover: null, photos: [] });
+    const [imagesLoading, setImagesLoading] = useState(false);
     const {
         values: productValues,
         dirty,
@@ -18,36 +19,88 @@ export function useEditProductData(product, updateProduct) {
     } = useFormik({
         validationSchema: productValidationSchema,
         initialValues: {
-            ...product,
+            name: product?.name ?? '',
+            alias: product?.alias ?? '',
+            description: product?.description ?? '',
             price: product?.price.toFixed(2),
+            categories: product?.categories ?? [],
+            tags: product?.tags ?? [],
+            stock: product?.stock ?? { amount: 0, lowStockAlert: 0 },
+            characteristics: product?.characteristics ?? [],
+            options: product?.options ?? [],
+            coverPhoto: product?.coverPhoto ?? null,
+            photos: product?.photos ?? [],
         },
         onSubmit: async (values) => {
-            const editProductInput = getEditProductInput(product, values);
-            if (!editProductInput) {
-                return;
-            }
-
             try {
+                setImagesLoading(true);
+
                 if (images.photos.length > 0) {
                     const urls = await getUploadedImages(images.photos);
-                    editProductInput.photosUrl = [
-                        ...(values.photosUrl ?? []),
-                        ...urls,
+                    values.photos = [
+                        ...(values.photos ?? []).filter((photo) => {
+                            return !images.photos.some((x) => x.name === photo.alt);
+                        }),
+                        ...urls.map((x) => ({
+                            id: x.id,
+                            url: x.url,
+                            thumbUrl: x.thumb?.url,
+                            mediumUrl: x.medium?.url,
+                            deleteUrl: x.delete_url,
+                            alt: x.title,
+                        })),
                     ];
                 }
 
                 if (images.cover) {
-                    const [url] = await getUploadedImages([images.cover]);
-                    editProductInput.coverPhotoUrl = url;
+                    const [meta] = await getUploadedImages([images.cover]);
+                    const {
+                        id,
+                        url,
+                        thumb,
+                        medium,
+                        delete_url: deleteUrl,
+                        title,
+                    } = meta;
+
+                    values.coverPhoto = {
+                        id,
+                        url,
+                        thumbUrl: thumb?.url,
+                        mediumUrl: medium?.url,
+                        deleteUrl,
+                        alt: title,
+                    };
                 }
             } catch (e) {
                 console.error(e);
+            } finally {
+                setImagesLoading(false);
             }
 
-            updateProduct(editProductInput);
+            const {
+                categories, price, alias, ...restValues
+            } = values;
+
+            updateProduct({
+                price: +price !== product.price ? +price : undefined,
+                categoriesId: categories.map((x) => x.id),
+                alias: alias !== product.alias ? alias : undefined,
+                ...restValues,
+            });
         },
         enableReinitialize: true,
     });
+
+    const onImagesChange = ({ cover, photos }) => {
+        if (cover !== undefined) {
+            setImages({ ...images, cover });
+        }
+
+        if (photos) {
+            setImages({ ...images, photos });
+        }
+    };
 
     return {
         productValues,
@@ -60,6 +113,8 @@ export function useEditProductData(product, updateProduct) {
         setFieldValue,
         handleBlur,
         handleSubmit,
-        setImages,
+        onImagesChange,
+        imagesLoading,
+        images,
     };
 }

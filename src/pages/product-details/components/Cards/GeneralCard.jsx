@@ -22,7 +22,6 @@ export default function GeneralCard({
             loading,
         },
     ] = useLazyQuery(CATEGORIES);
-    console.log(errors, touched);
 
     const aliasPlaceholder = name.toLowerCase()
         .split(/\W/)

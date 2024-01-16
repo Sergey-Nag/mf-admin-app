@@ -33,9 +33,14 @@ export const GET_PRODUCT = gql`
             }
             tags
             coverPhoto {
+                id
+                alt
                 url
+                deleteUrl
             }
             photos {
+                id
+                alt
                 url
             }
             createdISO

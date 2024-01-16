@@ -8,7 +8,7 @@ import ChangesCard from './components/Cards/ChangesCard';
 import CharacteristicsCard from './components/Cards/CharacteristicsCard';
 import GeneralCard from './components/Cards/GeneralCard';
 import OptionsCard from './components/Cards/OptionsCard';
-import PhotosCard from './components/Cards/PhotosCard';
+import PhotosCard from './components/Cards/PhotosCard/PhotosCard';
 import PriceCard from './components/Cards/PriceCard';
 import PublishButton from './components/PublishButton/PublishButton';
 import { useEditProductData } from './hooks/useEditProductData';
@@ -23,7 +23,8 @@ export default function ProductDetailsPage() {
     const {
         productValues, dirty, ready, handleChange,
         setFieldValue, handleBlur, handleSubmit,
-        errors, touched, isValid, setImages,
+        errors, touched, isValid, onImagesChange,
+        imagesLoading, images,
     } = useEditProductData(product, updateProduct);
 
     return (
@@ -41,9 +42,9 @@ export default function ProductDetailsPage() {
                         }
                     />
                     <SaveButton
-                        disabled={!isValid || !dirty || updating}
+                        disabled={!isValid || !dirty || updating || imagesLoading}
                         onClick={handleSubmit}
-                        busy={updating}
+                        busy={updating || imagesLoading}
                     />
                 </>
             )}
@@ -120,9 +121,11 @@ export default function ProductDetailsPage() {
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                 <PhotosCard
                     skeleton={!ready}
-                    coverPhotoUrl={product?.coverPhotoUrl}
-                    photosUrl={product?.photosUrl}
-                    onImageChange={(cover, photos) => setImages({ cover, photos })}
+                    coverPhoto={productValues?.coverPhoto}
+                    photos={productValues?.photos}
+                    setFieldValue={setFieldValue}
+                    onImageChange={onImagesChange}
+                    imagesToUpload={images}
                 />
             </Grid>
         </Page>

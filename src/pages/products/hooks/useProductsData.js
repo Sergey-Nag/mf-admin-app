@@ -1,11 +1,13 @@
-import { useQuery } from '@apollo/client';
-import { useMemo } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
+import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SORTING_ORDER } from '../../../constants/api';
-import { PRODUCTS } from '../queries';
+import { DELETE_PRODUCTS, PRODUCTS } from '../queries';
 
 export function useProductsData({ filter } = {}) {
     const [searchParams, setSearchParams] = useSearchParams({ page: 0, amount: 5 });
+    const [selected, setSelected] = useState([]);
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
     const pagination = useMemo(() => ({
         start: +searchParams.get('page') * +searchParams.get('amount') || 0,
@@ -26,6 +28,16 @@ export function useProductsData({ filter } = {}) {
         },
     );
 
+    const [deleteProducts] = useMutation(DELETE_PRODUCTS, {
+        variables: {
+            ids: selected.map(({ id }) => id),
+        },
+        refetchQueries: [PRODUCTS],
+        onCompleted: () => {
+            setShowDeleteDialog(false);
+        },
+    });
+
     const handlePaginationChange = (nextPage) => {
         setSearchParams({ page: nextPage, amount: pagination.amount });
     };
@@ -42,5 +54,10 @@ export function useProductsData({ filter } = {}) {
         page: +searchParams.get('page') || 0,
         handlePaginationChange,
         handleItemsPerPageChange,
+        deleteProducts,
+        setSelected,
+        selectedAmount: selected.length,
+        showDeleteDialog,
+        setShowDeleteDialog,
     };
 }

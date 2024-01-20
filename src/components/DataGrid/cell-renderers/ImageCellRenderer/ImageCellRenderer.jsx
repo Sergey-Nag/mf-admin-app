@@ -13,7 +13,7 @@ function ImageCellRenderer({ value }) {
 
     return (
         <img
-            src={value}
+            src={value?.thumbUrl || value?.url}
             alt={value}
             style={{
                 width: '100%',

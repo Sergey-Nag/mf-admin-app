@@ -7,7 +7,7 @@ import ProductLinkCellRenderer from '../cell-renderers/ProductLinkCellRenderer';
 export function useProductsColumn() {
     const colDefs = useMemo(() => [
         {
-            field: 'coverPhoto.url',
+            field: 'coverPhoto',
             headerName: 'Photo',
             width: 150,
             cellRenderer: ImageCellRenderer,

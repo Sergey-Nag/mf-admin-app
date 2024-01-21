@@ -1,15 +1,15 @@
 import React from 'react';
 import { tss } from 'tss-react/mui';
+import { ORDER_STATUS } from '../../../constants/api';
 
 const statusColor = {
-    NEW: 'yellow',
-    VERIFIED: 'green',
-    PACKED: 'lightblue',
-    SHIPPED: 'purple',
-    DELIVERED: '#0ADFD2',
-    CANCELED: 'grey',
-    RETURNED: 'red',
-
+    [ORDER_STATUS.NEW]: 'yellow',
+    [ORDER_STATUS.VERIFIED]: 'green',
+    [ORDER_STATUS.PACKED]: 'lightblue',
+    [ORDER_STATUS.SHIPPED]: 'purple',
+    [ORDER_STATUS.DELIVERED]: '#0ADFD2',
+    [ORDER_STATUS.CANCELED]: 'grey',
+    [ORDER_STATUS.RETURNED]: 'red',
 };
 
 const useStyles = tss.create(({ value, theme }) => ({

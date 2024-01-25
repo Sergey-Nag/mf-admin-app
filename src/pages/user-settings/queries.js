@@ -1,16 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const ME_QUERY = gql`
-    query {
-        me {
-            firstname
-            lastname      
-        }
-    }
-`;
 export const EDIT_ADMIN = gql`
-    mutation editAdmin($id: ID!, $input: EditAdminInput!){
-        admin{
+    mutation EditAdmin($id: ID!, $input: EditAdminInput!){
+        editAdmin(id: $id input: $input) {
             firstname
             lastname
         }

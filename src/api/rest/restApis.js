@@ -1,3 +1,4 @@
+import { ACCESS_TOKEN } from '../../constants/tokenKeys';
 import { REST_URL } from '../../constants/urls';
 
 /**
@@ -14,6 +15,7 @@ export async function RESTLogin(credentials) {
         body: JSON.stringify(credentials),
     }).then((res) => res.json());
 }
+
 /**
  *
  * @param {string} accessToken
@@ -43,5 +45,22 @@ export async function RESTRefreshToken(accessToken, refreshToken) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ refreshToken }),
+    });
+}
+
+/**
+ * @param {string} newPassword
+ * @returns {Promise<Response>}
+ */
+export async function RESTChangePassword(newPassword) {
+    const accessToken = localStorage.getItem(ACCESS_TOKEN);
+
+    return fetch(`${REST_URL}/change-password`, {
+        method: 'POST',
+        headers: {
+            authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ newPassword }),
     });
 }

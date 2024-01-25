@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { tss } from 'tss-react/mui';
 import { Navigation } from '../Navigation/Navigation';
 import AdminInfo from '../AdminInfo/AdminInfo';
+import AdminSettingsButton from '../AdminSettings/AdminSettings';
 
 const useStyles = tss.create(({ theme }) => ({
     sideBar: {
@@ -11,6 +12,13 @@ const useStyles = tss.create(({ theme }) => ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+    },
+    contentContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'stretch',
+        flexGrow: 1,
     },
     layout: {
         display: 'flex',
@@ -27,7 +35,10 @@ function Layout({ children }) {
     return (
         <div className={classes.layout}>
             <Box className={classes.sideBar}>
-                <AdminInfo />
+                <Box className={classes.contentContainer}>
+                    <AdminInfo />
+                    <AdminSettingsButton />
+                </Box>
                 <Navigation />
             </Box>
             {children}

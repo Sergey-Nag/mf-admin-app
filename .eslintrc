@@ -30,7 +30,8 @@
         "react/jsx-props-no-spreading": 0,
         "arrow-body-style": 0,
         "no-unused-expressions": 0,
-        "no-nested-ternary": 0
+        "no-nested-ternary": 0,
+        "jsx-a11y/label-has-associated-control" : 0
     },
     "ignorePatterns": ["config"]
 }

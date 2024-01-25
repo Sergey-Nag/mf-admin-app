@@ -36,8 +36,8 @@ function App({ basename = '', theme = appTheme }) {
                         <BrowserRouter basename={basename}>
                             <Routes>
                                 <Route element={<AuthProtected />}>
+                                    <Route index element={<Navigate to="/dashboard" />} />
                                     <Route path="/user-settings" element={<UserSettings />} />
-                                    <Route path="/" element={<Navigate to="/dashboard" />} />
                                     <Route path="/dashboard" element={<DashboardPage />} />
                                     <Route path="/products" element={<ProductsPage />} />
                                     <Route path="/products/new" element={<NewProductPage />} />

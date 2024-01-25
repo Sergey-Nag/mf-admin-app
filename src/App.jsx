@@ -21,6 +21,7 @@ import AuthProvider from './providers/AuthProvider';
 import appTheme from './theme';
 import ProductDetailsPage from './pages/product-details/ProductDetailsPage';
 import NewProductPage from './pages/new-product/NewProductPage';
+import UserSettings from './pages/user-settings/UserSettingsPage';
 
 const cache = createCache({
     key: 'admin',
@@ -35,7 +36,8 @@ function App({ basename = '', theme = appTheme }) {
                         <BrowserRouter basename={basename}>
                             <Routes>
                                 <Route element={<AuthProtected />}>
-                                    <Route path="/" element={<Navigate to="/dashboard" />} />
+                                    <Route index element={<Navigate to="/dashboard" />} />
+                                    <Route path="/user-settings" element={<UserSettings />} />
                                     <Route path="/dashboard" element={<DashboardPage />} />
                                     <Route path="/products" element={<ProductsPage />} />
                                     <Route path="/products/new" element={<NewProductPage />} />

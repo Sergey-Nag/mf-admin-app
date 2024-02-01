@@ -14,8 +14,8 @@ Make sure you have Node.js (v20)
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/admin-app.git
-   cd admin-app
+   git clone https://github.com/Sergey-Nag/mf-admin-app.git
+   cd mf-admin-app
    ```
 
 2. Install project dependencies:

@@ -21,7 +21,6 @@ function OrdersPage() {
                 <DataGrid
                     colDefs={colDefs}
                     rowData={orders}
-                    onSelectionChanged={(rows) => console.log(rows)}
                     pagination={{
                         page,
                         rowsPerPage: pagination.amount,

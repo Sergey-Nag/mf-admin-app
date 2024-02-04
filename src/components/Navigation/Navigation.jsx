@@ -6,7 +6,6 @@ import { tss } from 'tss-react/mui';
 import { useAuth } from '../../providers/AuthProvider';
 
 const useStyles = tss.withNestedSelectors().create(({ theme, classes }) => {
-    console.log(theme);
     return {
         btnGroup: {
             width: '300px',
